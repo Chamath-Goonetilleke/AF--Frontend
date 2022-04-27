@@ -4,7 +4,8 @@ function App(){
   
   return (
     <div>
-      This was made from Scratch! Also hello world!
+      Hello World
+      <button className="btn btn-primary">check</button>
     </div>
   );
 };
