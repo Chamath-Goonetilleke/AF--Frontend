@@ -1,12 +1,12 @@
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+function App(){
+  
   return (
     <div>
-      hellow
+      This was made from Scratch! Also hello world!
     </div>
-    
   );
-}
+};
 
 export default App;
