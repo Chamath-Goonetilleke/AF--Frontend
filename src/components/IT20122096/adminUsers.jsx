@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 class AdminUsers extends Component {
-  state = {  } 
+  state = {users:[], userRoles:[]  } 
   render() { 
     return (
       <div>

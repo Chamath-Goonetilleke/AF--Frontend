@@ -3,6 +3,9 @@ import config from "../config.json";
 
 const endpoint = config.API + "/user";
 
+export async function getUsers() {
+  return await http.get(endpoint);
+}
 export async function addUser(data) {
   let user={}
   if (data.userRole === "Student") {
