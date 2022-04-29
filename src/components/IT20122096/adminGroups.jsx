@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Group from "./common/group";
 import Page from "./common/pagination";
 import { paginate } from "../../services/paginateService";
-import { getGroups } from "../../services/groupService";
+import { getGroups } from "../../services/adminService";
 
 class AdminGroups extends Component {
   state = {
-    pageSize: 1,
+    pageSize: 4,
     currentPage: 1,
     groups: [],
   };
@@ -27,7 +27,7 @@ class AdminGroups extends Component {
     return (
       <div>
         <Group items={this.getPageData()} />
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center", paddingTop:"2rem" }}>
           <Page
             itemCount={this.state.groups.length}
             pageSize={this.state.pageSize}

@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import AdminGroups from './adminGroups';
-import NavbarInside from './common/navbarInside';
+import React, { Component } from "react";
+import AdminGroups from "./adminGroups";
+import NavbarInside from "./common/navbarInside";
 
 export default class AdminProfile extends Component {
   state = {
-    currentItem:"Groups"
+    currentItem: "Groups",
   };
   handleNavSelect = (item) => {
-    this.setState({currentItem:item})
+    this.setState({ currentItem: item });
   };
   render() {
     const items = ["Groups", "Documents", "Users", "Report"];
@@ -20,10 +20,17 @@ export default class AdminProfile extends Component {
           currentItem={this.state.currentItem}
         />
         <div style={{ marginTop: "4rem" }}>
-          {currentItem === "Groups" ? <AdminGroups/> : null}
+          {currentItem === "Groups" ? (
+            <AdminGroups />
+          ) : currentItem === "Documents" ? (
+            <div>docs</div>
+          ) : currentItem === "Users" ? (
+            <div>users</div>
+          ) : currentItem === "Report" ? (
+            <div>repors</div>
+          ) : null}
         </div>
       </div>
     );
   }
 }
- 
