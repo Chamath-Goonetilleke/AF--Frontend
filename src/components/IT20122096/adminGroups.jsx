@@ -26,6 +26,7 @@ class AdminGroups extends Component {
   render() {
     return (
       <div>
+        <h1>Add a side menu to sort groups has pannel, supre &  create a search bar</h1>
         <Group items={this.getPageData()} />
         <div style={{ display: "flex", justifyContent: "center", paddingTop:"2rem" }}>
           <Page

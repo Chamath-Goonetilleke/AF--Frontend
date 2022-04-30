@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AdminDocuments from "./adminDocuments";
 import AdminGroups from "./adminGroups";
 import AdminUsers from "./adminUsers";
 import NavbarInside from "./common/navbarInside";
@@ -24,7 +25,7 @@ export default class AdminProfile extends Component {
           {currentItem === "Groups" ? (
             <AdminGroups />
           ) : currentItem === "Documents" ? (
-            <div>docs</div>
+            <AdminDocuments/>
           ) : currentItem === "Users" ? (
             <AdminUsers/>
           ) : currentItem === "Report" ? (
