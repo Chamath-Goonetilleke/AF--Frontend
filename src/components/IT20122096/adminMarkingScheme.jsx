@@ -6,7 +6,6 @@ import Criteria from './markingCriteria';
 class MarkingScheme extends Form {
   state = {
     data: { name: "" },
-    marking:{},
     errors: {},
   };
   doSubmit = async () => {
@@ -28,7 +27,7 @@ class MarkingScheme extends Form {
             Create Marking Scheme
           </button>
         </form>
-        <Criteria marking={ this.state.marking}/>
+        {this.state.marking && <Criteria marking={this.state.marking} />}
       </div>
     );
   }
