@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import AdminDocuments from "./adminDocuments";
-import AdminGroups from "./adminGroups";
-import AdminUsers from "./adminUsers";
-import NavbarInside from "./common/navbarInside";
+import AdminDocuments from "../admin/adminDocuments";
+import AdminGroups from "../admin/adminGroups";
+import AdminUsers from "../admin/adminUsers";
+import NavbarInside from "../common/navbarInside";
 
 export default class AdminProfile extends Component {
   state = {
@@ -16,6 +16,9 @@ export default class AdminProfile extends Component {
     const currentItem = this.state.currentItem;
     return (
       <div style={{ marginTop: "5rem" }}>
+        <center>
+          <h1>Admin Pannel</h1>
+        </center>
         <NavbarInside
           items={items}
           onChange={this.handleNavSelect}
@@ -25,9 +28,9 @@ export default class AdminProfile extends Component {
           {currentItem === "Groups" ? (
             <AdminGroups />
           ) : currentItem === "Documents" ? (
-            <AdminDocuments/>
+            <AdminDocuments />
           ) : currentItem === "Users" ? (
-            <AdminUsers/>
+            <AdminUsers />
           ) : currentItem === "Report" ? (
             <div>repors</div>
           ) : null}

@@ -13,9 +13,31 @@ const StaffTable = ({ items, currentItem }) => {
       <tbody>
         {items.map((item) => (
           <tr key={item._id}>
-            <td>{item.name}</td>
-            <td>{item.email}</td>
-            <td>{item.researchField}</td>
+            <td>
+              <div style={{ padding: "5px" }}>{item.name}</div>
+            </td>
+            <td>
+              <div style={{ padding: "5px" }}>{item.email}</div>
+            </td>
+            <td>
+              <div style={{ padding: "5px" }}>{item.researchField}</div>
+            </td>
+            <td>
+              <button
+                style={{ padding: "5px" }}
+                className="btn btn-warning btn-sm"
+              >
+                Update
+              </button>
+            </td>
+            <td>
+              <button
+                style={{ padding: "5px" }}
+                className="btn btn-danger btn-sm"
+              >
+                Delete
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

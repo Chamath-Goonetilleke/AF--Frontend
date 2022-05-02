@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import MarkingScheme from "./adminMarkingScheme";
-import SideMenuList from "./common/listGroupMenu";
+import MarkingScheme from "../admin/adminMarkingScheme";
+import SideMenuList from "../common/sideMenuList";
 
 class AdminDocuments extends Component {
   state = {

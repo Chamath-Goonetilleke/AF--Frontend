@@ -11,8 +11,8 @@ const NavbarInside = (props) => {
             className="nav-item"
             style={
               currentItem === item
-                ? { padding: "2rem", float: "left", color: "yellow",fontWeight:800,fontSize:"20px" }
-                : { padding: "2rem", float: "left", color: "white" }
+                ? { padding: "2rem", float: "left", color: "yellow",fontWeight:800,fontSize:"20px",cursor:"pointer" }
+                : { padding: "2rem", float: "left", color: "white",cursor:"pointer" }
             }
             onClick={() => {
               onChange(item);

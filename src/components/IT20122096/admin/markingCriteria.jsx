@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { createCriteria } from '../../services/markingCriteria';
-import Form from './common/form';
+import { createCriteria } from '../../../services/markingCriteria';
+import Form from '../common/form';
 
 class Criteria extends Form {
   state = {

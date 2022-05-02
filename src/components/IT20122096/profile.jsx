@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import AdminProfile from "./adminProfile";
+import AdminProfile from "./admin/adminProfile";
 import { getCurrentUser } from "../../services/authServices";
-import StudentProfile from "./studentProfile";
-import SupervisorProfile from "./supervisorProfile";
-import CosupervisorProfile from "./co-supervisorProfile";
-import PannelMemberProfile from "./pannelMemberProfile";
+import StudentProfile from "./student/studentProfile";
+import SupervisorProfile from "./supervisor/supervisorProfile";
+import CosupervisorProfile from "./cosupervisor/co-supervisorProfile";
+import PannelMemberProfile from "./pannelMember/pannelMemberProfile";
 
 export default class Profile extends Component {
   state = { user: getCurrentUser() };
