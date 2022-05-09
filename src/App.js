@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from 'react';
 
-function App(){
-  
-  return (
-    <div>
-      Hello World
-      <button className="btn btn-primary">check</button>
-    </div>
-  );
-};
+function App() {
+  return ( 
+    <React.Fragment>
+      hello world
+    </React.Fragment>
+   );
+}
 
 export default App;
