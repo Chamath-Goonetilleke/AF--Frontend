@@ -9,3 +9,10 @@ export async function getGroups() {
 export async function getGroupMember() {
   return await http.get(endPoint + "/groupMembers");
 }
+export async function getGroupMemberById(id) {
+  return await http.get(endPoint + `/getGroupMemberById/${id}`);
+}
+
+export async function updateGroupMember(data,id) {
+  return await http.put(endPoint + `/UpdateGroupMembers/${id}`,data);
+}

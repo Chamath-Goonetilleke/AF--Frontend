@@ -3,6 +3,7 @@ import AdminDocuments from "../admin/adminDocuments";
 import AdminGroups from "../admin/adminGroups";
 import AdminUsers from "../admin/adminUsers";
 import NavbarInside from "../common/navbarInside";
+import StudentUpdate from "../student/studentUpdateModal";
 
 export default class AdminProfile extends Component {
   state = {
@@ -32,7 +33,7 @@ export default class AdminProfile extends Component {
           ) : currentItem === "Users" ? (
             <AdminUsers />
           ) : currentItem === "Report" ? (
-            <div>repors</div>
+            <StudentUpdate/>
           ) : null}
         </div>
       </div>

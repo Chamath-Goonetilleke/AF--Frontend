@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { paginate } from "../../../services/paginateService";
-import { getGroupMember, getGroups } from "../../../services/adminService";
+import { getGroupMember, getGroupMemberById, getGroups } from "../../../services/adminService";
 import SearchBar from "../common/searchBar";
 import Page from "../common/pagination";
+import StudentUpdate from "../student/studentUpdateModal";
 
 class StudentTable extends Component {
   state = {
     groups: [],
-    groupMembers:[],
+    groupMembers: [],
     pagedGroups: [],
     pageSize: 2,
     searchResult: "",
     currentPage: 1,
-    itemCount:0
+    itemCount: 0,
+    member: {},
+    memberId:""
   };
 
   async componentDidMount() {
@@ -28,8 +31,7 @@ class StudentTable extends Component {
     const itemCount = this.state.groups.length;
     if (item !== "") {
       this.setState({ searchResult: item, itemCount: 0 });
-    }
-    else {
+    } else {
       this.setState({ searchResult: item, itemCount: itemCount });
     }
   };
@@ -49,6 +51,11 @@ class StudentTable extends Component {
   };
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
+  };
+  handleOnUpdate = async (id) => {
+    const { data: member } = await getGroupMemberById(id);
+    this.setState({ member });
+    this.setState({ memberId: id });
   };
   render() {
     return (
@@ -73,7 +80,7 @@ class StudentTable extends Component {
                   {this.state.groupMembers
                     .filter((m) => m.groupid === group.groupid)
                     .map((member) => (
-                      <tr>
+                      <tr key={member._id}>
                         <div style={{ padding: "5px" }}>{member.userId}</div>
                       </tr>
                     ))}
@@ -82,7 +89,7 @@ class StudentTable extends Component {
                   {this.state.groupMembers
                     .filter((m) => m.groupid === group.groupid)
                     .map((member) => (
-                      <tr>
+                      <tr key={member._id}>
                         <div style={{ padding: "5px" }}>{member.name}</div>
                       </tr>
                     ))}
@@ -91,9 +98,15 @@ class StudentTable extends Component {
                   {this.state.groupMembers
                     .filter((m) => m.groupid === group.groupid)
                     .map((member) => (
-                      <tr>
+                      <tr key={member._id}>
                         <div style={{ padding: "5px" }}>
-                          <button className="btn btn-warning btn-sm">
+                          <button
+                            type="button"
+                            className="btn btn-warning btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"
+                            onClick={() => this.handleOnUpdate(member._id)}
+                          >
                             UPDATE
                           </button>
                         </div>
@@ -104,7 +117,7 @@ class StudentTable extends Component {
                   {this.state.groupMembers
                     .filter((m) => m.groupid === group.groupid)
                     .map((member) => (
-                      <tr>
+                      <tr key={member._id}>
                         <div style={{ padding: "5px" }}>
                           <button className="btn btn-danger btn-sm">
                             Delete
@@ -125,6 +138,8 @@ class StudentTable extends Component {
             marginRight: "5rem",
           }}
         >
+          <StudentUpdate member={this.state.member} memberId={ this.state.memberId} />
+
           <Page
             itemCount={this.state.itemCount}
             pageSize={this.state.pageSize}

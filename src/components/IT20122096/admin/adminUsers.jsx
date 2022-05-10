@@ -12,7 +12,7 @@ class AdminUsers extends Component {
     groups: [],
     users: [],
     staff: [],
-    userRoles: [],
+    userRoles: ["Student","Supervisor","Co-Supervisor","Pannel Member"],
     currentItem: "Student",
     currentPage: 1,
     pageSize: 3,
