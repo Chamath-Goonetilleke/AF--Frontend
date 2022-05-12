@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Group from "../common/group";
-import Page from "../common/pagination";
-import { paginate } from "../../../services/paginateService";
-import { getGroups } from "../../../services/adminService";
-import SideMenuList from "../common/sideMenuList";
-import SearchBar from "../common/searchBar";
+import Group from "../../common/group";
+import Page from "../../common/pagination";
+import { paginate } from "../../../../services/paginateService";
+import { getGroups } from "../../../../services/adminService";
+import SideMenuList from "../../common/sideMenuList";
+import SearchBar from "../../common/searchBar";
 import _ from "lodash";
+import AdminGroupCard from "./adminGroupCard";
 
 class AdminGroups extends Component {
   state = {
@@ -56,7 +57,7 @@ class AdminGroups extends Component {
       filterdGroups = groups.filter(
         (g) =>
           g.supercisorid !== "" &&
-          (g.groupe + "").toLowerCase().startsWith(searchResult.toLowerCase())
+          (g.groupid + "").toLowerCase().startsWith(searchResult.toLowerCase())
       );
     }
     if (currentItem === "All Groups") {
@@ -89,7 +90,7 @@ class AdminGroups extends Component {
         <div>
           <SearchBar onChange={this.handleSearch} placeholder="SE3030_GRP_XX" />
           {this.getPageData().count !== 0 ? (
-            <Group items={this.getPageData().data} />
+            <AdminGroupCard items={this.getPageData().data} />
           ) : (
             <center>
               <h2>No group with Group Id "{this.state.searchResult}"</h2>

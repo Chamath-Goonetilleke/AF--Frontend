@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import AdminDocuments from "../admin/adminDocuments";
-import AdminGroups from "../admin/adminGroups";
-import AdminUsers from "../admin/adminUsers";
+import AdminDocuments from "./Document/adminDocuments";
+import AdminGroups from "./Group/adminGroups";
+import AdminUsers from "./Users/adminUsers";
 import NavbarInside from "../common/navbarInside";
-import StudentUpdate from "../student/studentUpdateModal";
+import StudentUpdate from "./Users/studentUpdateModal";
 
 export default class AdminProfile extends Component {
   state = {

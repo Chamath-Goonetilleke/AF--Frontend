@@ -1,6 +1,5 @@
 import React from "react";
-import { updateGroupMember } from "../../../services/adminService";
-import Form from "../common/form";
+import Form from "../../common/form";
 
 class StudentUpdate extends Form {
   state = {
@@ -13,12 +12,13 @@ class StudentUpdate extends Form {
   };
 
   handleUpdate = async () => {
-    console.log(this.state.data);
-    try {
-      await updateGroupMember(this.state.data, this.props.memberId);
-    } catch (error) {
-      console.log(error);
-    }
+    console.log(this.props.memberId);
+    // try {
+    //   await updateGroupMember(this.state.data, this.props.memberId);
+    //   window.location = "/profile";
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   render() {
     return (

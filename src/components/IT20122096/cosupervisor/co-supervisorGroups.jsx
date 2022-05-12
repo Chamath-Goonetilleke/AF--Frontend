@@ -5,7 +5,7 @@ import Group from "../common/group";
 import Page from "../common/pagination";
 import SideMenuList from "../common/sideMenuList";
 
-class SupervisorGroups extends Component {
+class Co_SupervisorGroups extends Component {
   state = {
     groups: [],
     menu: [
@@ -32,7 +32,9 @@ class SupervisorGroups extends Component {
   getPageData = () => {
     const { groups, currentPage, pageSize } = this.state;
 
-    const filterdGroup= groups.filter((group)=>group.supercisorid===localStorage.getItem("userId"))
+    const filterdGroup = groups.filter(
+      (group) => group.cosupercisorid === localStorage.getItem("userId")
+    );
 
     const pagedGroups = paginate(filterdGroup, currentPage, pageSize);
     return { data: pagedGroups, count:filterdGroup.length };
@@ -69,4 +71,4 @@ class SupervisorGroups extends Component {
   }
 }
 
-export default SupervisorGroups;
+export default Co_SupervisorGroups;

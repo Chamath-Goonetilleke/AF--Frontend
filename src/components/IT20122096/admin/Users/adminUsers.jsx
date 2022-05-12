@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { getUsers } from "../../../services/userServices";
-import SideMenuList from "../common/sideMenuList";
-import Page from "../common/pagination";
+import { getUsers } from "../../../../services/userServices";
+import SideMenuList from "../../common/sideMenuList";
+import Page from "../../common/pagination";
 import StudentTable from "./studentTable";
-import { getGroups } from "../../../services/adminService";
-import StaffTable from "../common/staffTable";
-import SearchBar from "../common/searchBar";
+import { getGroups } from "../../../../services/adminService";
+import StaffTable from "../../common/staffTable";
+import SearchBar from "../../common/searchBar";
 
 class AdminUsers extends Component {
   state = {

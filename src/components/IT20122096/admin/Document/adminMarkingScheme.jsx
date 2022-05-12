@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { createMarkingRubrik } from '../../../services/markingShemeServices';
-import Form from '../common/form';
-import Criteria from "../admin/markingCriteria";
+import { createMarkingRubrik } from '../../../../services/markingShemeServices';
+import Form from '../../common/form';
+import Criteria from "./markingCriteria";
 
 class MarkingScheme extends Form {
   state = {

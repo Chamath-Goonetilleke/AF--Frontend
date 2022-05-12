@@ -6,6 +6,10 @@ const endpoint = config.API + "/user";
 export async function getUsers() {
   return await http.get(endpoint);
 }
+export async function getUser() {
+  const id = localStorage.getItem("userId")
+  return await http.get(endpoint+`/${id}`);
+}
 export async function addUser(data) {
   let user = {};
   if (data.userRole === "Student") {

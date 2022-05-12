@@ -1,9 +1,14 @@
 import React, { Component } from "react";
-import { paginate } from "../../../services/paginateService";
-import { getGroupMember, getGroupMemberById, getGroups } from "../../../services/adminService";
-import SearchBar from "../common/searchBar";
-import Page from "../common/pagination";
-import StudentUpdate from "../student/studentUpdateModal";
+import { paginate } from "../../../../services/paginateService";
+import {
+  deleteGroupMember,
+  getGroupMember,
+  getGroupMemberById,
+  getGroups,
+} from "../../../../services/adminService";
+import SearchBar from "../../common/searchBar";
+import Page from "../../common/pagination";
+import StudentUpdate from "./studentUpdateModal";
 
 class StudentTable extends Component {
   state = {
@@ -15,7 +20,7 @@ class StudentTable extends Component {
     currentPage: 1,
     itemCount: 0,
     member: {},
-    memberId:""
+    memberId: "",
   };
 
   async componentDidMount() {
@@ -52,10 +57,20 @@ class StudentTable extends Component {
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
+  //TODO:update need atention
+    
   handleOnUpdate = async (id) => {
     const { data: member } = await getGroupMemberById(id);
     this.setState({ member });
     this.setState({ memberId: id });
+  };
+  handleOnDelete = async (id) => {
+    try {
+      await deleteGroupMember(id);
+      window.location="/profile"
+    } catch (error) {
+      console.log(error);
+    }
   };
   render() {
     return (
@@ -70,6 +85,7 @@ class StudentTable extends Component {
               <th scope="col">Group</th>
               <th scope="col">Student Id</th>
               <th scope="col">Student Name</th>
+              <th scope="col">Student Email</th>
             </tr>
           </thead>
           <tbody>
@@ -81,7 +97,7 @@ class StudentTable extends Component {
                     .filter((m) => m.groupid === group.groupid)
                     .map((member) => (
                       <tr key={member._id}>
-                        <div style={{ padding: "5px" }}>{member.userId}</div>
+                        <div style={{ padding: "8px" }}>{member.userId}</div>
                       </tr>
                     ))}
                 </td>
@@ -90,7 +106,16 @@ class StudentTable extends Component {
                     .filter((m) => m.groupid === group.groupid)
                     .map((member) => (
                       <tr key={member._id}>
-                        <div style={{ padding: "5px" }}>{member.name}</div>
+                        <div style={{ padding: "8px" }}>{member.name}</div>
+                      </tr>
+                    ))}
+                </td>
+                <td>
+                  {this.state.groupMembers
+                    .filter((m) => m.groupid === group.groupid)
+                    .map((member) => (
+                      <tr key={member._id}>
+                        <div style={{ padding: "8px" }}>{member.email}</div>
                       </tr>
                     ))}
                 </td>
@@ -107,7 +132,7 @@ class StudentTable extends Component {
                             data-bs-target="#staticBackdrop"
                             onClick={() => this.handleOnUpdate(member._id)}
                           >
-                            UPDATE
+                            Update
                           </button>
                         </div>
                       </tr>
@@ -119,7 +144,10 @@ class StudentTable extends Component {
                     .map((member) => (
                       <tr key={member._id}>
                         <div style={{ padding: "5px" }}>
-                          <button className="btn btn-danger btn-sm">
+                          <button
+                            className="btn btn-danger btn-sm"
+                            onClick={() => this.handleOnDelete(member._id)}
+                          >
                             Delete
                           </button>
                         </div>
@@ -138,7 +166,10 @@ class StudentTable extends Component {
             marginRight: "5rem",
           }}
         >
-          <StudentUpdate member={this.state.member} memberId={ this.state.memberId} />
+          <StudentUpdate
+            member={this.state.member}
+            memberId={this.state.memberId}
+          />
 
           <Page
             itemCount={this.state.itemCount}
