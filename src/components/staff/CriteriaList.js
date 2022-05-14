@@ -1,0 +1,58 @@
+import React, { useEffect, useState } from "react";
+
+import config from "../../config.json";
+
+const MarkingCriteria = (props) => (
+  <tr>
+    <td>{props.record.name}</td>
+    <td>{props.record.value}</td>
+  </tr>
+);
+
+export default function CriteriaList(props) {
+  const [markingCriterias, setMarkingCriterias] = useState([]);
+
+  useEffect(() => {
+    async function getRecords() {
+      const response = await fetch(`${config.API}/staff/markings/${props.id}`);
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const records = await response.json();
+      setMarkingCriterias(records);
+    }
+
+    getRecords();
+  }, [markingCriterias.length]);
+
+  function markingCriteriaList() {
+    if (markingCriterias.length === 0) {
+      return (
+        <div>
+          <h6>Marking Criterias not found.</h6>
+        </div>
+      );
+    }
+    return markingCriterias.map((record) => {
+      return <MarkingCriteria record={record} key={record._id} />;
+    });
+  }
+
+  return (
+    <div>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th>Marks Allocated</th>
+          </tr>
+        </thead>
+        <tbody>{markingCriteriaList()}</tbody>
+      </table>
+    </div>
+  );
+}
