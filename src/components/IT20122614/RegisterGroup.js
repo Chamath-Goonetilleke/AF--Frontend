@@ -79,6 +79,7 @@ export default function RegisterGroup() {
 
   return (
     <div>
+      <br/><br/>
       <div className="container cardBackgroudcolor">
         <div id="createDIV">
           <center>

@@ -57,89 +57,86 @@
 .formpadding {
   margin-right: 100px;
 }
-.submitbtn{
+.submitbtn {
   margin-top: 40px;
   margin-bottom: 20px;
-
 }
 /* submit btn */
 .noselect {
   -webkit-touch-callout: none;
-    -webkit-user-select: none;
-     -khtml-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-		-webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn1 {
-	width: 150px;
-	height: 30px;
-	cursor: pointer;
-	border: none;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #af05c2;
-	background-image: linear-gradient(315deg, #cd09e2 0%, #18d8d8 74%);
-	background-size: 200% 100%;
-	background-position: left;
-	background-repeat: no-repeat;
-	transition: 500ms;
-  
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #af05c2;
+  background-image: linear-gradient(315deg, #cd09e2 0%, #18d8d8 74%);
+  background-size: 200% 100%;
+  background-position: left;
+  background-repeat: no-repeat;
+  transition: 500ms;
 }
 
 .btn1:before {
-	content: 'Submit';
-	color: rgb(174, 235, 235);
-	font-size: 16px;
-	position: absolute;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 140px;
-	height: 40px;
-	background-color: #0f90a3;
-	background-image: linear-gradient(315deg, #0c5c19 0%, #067474 74%);
-	transition: 500ms;
+  content: "Submit";
+  color: rgb(174, 235, 235);
+  font-size: 16px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 40px;
+  background-color: #0f90a3;
+  background-image: linear-gradient(315deg, #0c5c19 0%, #067474 74%);
+  transition: 500ms;
 }
 
 .btn1:hover {
-	background-position: right;
+  background-position: right;
 }
 
 .btn1:hover:before {
-	color: white;
+  color: white;
 }
 
 .btn1:focus {
-	outline: none;
+  outline: none;
 }
 
 /* end of submit btn */
-.defaultmargin{
+.defaultmargin {
   margin: 20px;
-
 }
 /* stepper */
-.stepperstylings{
+.stepperstylings {
   border-radius: 30px;
   background-color: #0f90a3;
 }
-.insideCard{
+.insideCard {
   background-color: antiquewhite;
   padding: 20px;
 }
-.selectWidth{
+.selectWidth {
   width: 400px;
 }
 /* =========================================== */
 #myDIV {
-  display:none;
+  display: none;
 }
 #gadded {
-  display:none;
+  display: none;
 }
 /* ============================================== */
 #snackbar {
@@ -166,26 +163,69 @@
 }
 
 @-webkit-keyframes fadein {
-  from {bottom: 0; opacity: 0;} 
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @keyframes fadein {
-  from {bottom: 0; opacity: 0;}
-  to {bottom: 30px; opacity: 1;}
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadeout {
-  from {bottom: 30px; opacity: 1;} 
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 
 @keyframes fadeout {
-  from {bottom: 30px; opacity: 1;}
-  to {bottom: 0; opacity: 0;}
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
 /* ============================================== */
-.setingmargin{
+.setingmargin {
   margin-top: 20px;
 }
 
+/* profile */
+.divTag {
+  background-color: #efb262;
+  padding: 10px;
+  padding-left: 20px;
+  color: white;
+  box-shadow: 0 16px 16px 0 rgba(12, 26, 218, 0.2);
+  border-radius: 10px;
+}
+/* btn style profile */
+.btnProfile {
+  color: rgb(9, 210, 69);
+}
+.profilerequestBtn {
+  border-style: none;
+
+  color: white;
+  color: #f2efd9;
+}

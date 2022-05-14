@@ -11,7 +11,8 @@ function App() {
   return (
     <div>
       <Routes>
-        <StudentProfile />
+        
+        <Route path="/" exact component={StudentProfile} />
         <Route path="/register-topic" exact component={RegisterTopic} />
         <Route path="/register-group" exact component={RegisterGroup} />
         <Route path="/supervisor" exact component={RequestSupervisor} />

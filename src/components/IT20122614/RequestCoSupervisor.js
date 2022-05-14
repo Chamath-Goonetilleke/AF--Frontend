@@ -1,12 +1,8 @@
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import axios from "axios";
-<<<<<<< HEAD
  import { requestTopicSepervisor } from "../../services/StudentService";
 
-=======
-import { requestTopicSepervisor } from "../../services/StudentService";
->>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
 
 export default function RequestSupervisor() {
   const [goSteps, setGoSteps] = useState(0);
@@ -19,10 +15,6 @@ export default function RequestSupervisor() {
   const [message, setmessage] = useState("");
   const userRole = "Co-Supervisor";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
   function getData(e) {
     e.preventDefault();
 
@@ -31,7 +23,7 @@ export default function RequestSupervisor() {
     } else {
       axios
         .get("http://localhost:8081/api/students/getsupervisor", {
-          params: { field: supervisor },
+          params: { field: supervisor,userRole: userRole },
         })
         .then((res) => {
           console.log(res.data);
@@ -68,6 +60,7 @@ export default function RequestSupervisor() {
 
   return (
     <div className="container cardBackgroudcolor">
+      <br/><br/>
       {/* <center>
         <h1>Select Superviser</h1>
       </center> */}
@@ -158,7 +151,7 @@ export default function RequestSupervisor() {
                               setGoSteps(1),
                               setSelectSupervisorname(supervisor.name),
                               setSelectSupervisorid(supervisor.id),
-                              setSupervisorField(supervisor.field)
+                              setSupervisorField(supervisor.researchField)
                             )}
                             type="submit"
                           >
