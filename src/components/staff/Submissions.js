@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { storage } from "../../firebase";
-import { ref, listAll, getDownloadURL } from "firebase/storage";
+import config from "../../config.json";
 
 const DisplayLink = (props) => (
   <tr>
-    <td>{props.name}</td>
+    <td>{props.record.field}</td>
     <td>
-      <a className="btn btn-primary" href={`${props.url}`} target={"_blank"}>
+      <a
+        className="btn btn-primary"
+        href={`${props.record.file}`}
+        target={"_blank"}
+      >
         Download
       </a>
     </td>
@@ -14,26 +17,38 @@ const DisplayLink = (props) => (
 );
 
 export default function Submissions(props) {
-  const [submissions, setSubmissions] = useState(new Map());
+  const [submissions, setSubmissions] = useState([]);
 
   useEffect(() => {
-    const listRef = ref(storage, `${props.id}`);
-    listAll(listRef)
-      .then((res) => {
-        res.items.forEach((itemRef) => {
-          getDownloadURL(itemRef).then(function (url) {
-            setSubmissions(new Map(submissions.set(url, itemRef.name)));
-          });
-        });
-      })
-      .catch((error) => {
-        window.alert(error);
-      });
+    async function getRecords() {
+      const response = await fetch(
+        `${config.API}/staff/submissions/${props.id}`
+      );
+
+      if (!response.ok) {
+        const message = `An error occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+
+      const records = await response.json();
+      setSubmissions(records);
+    }
+
+    getRecords();
+    console.log(submissions);
   }, [submissions.size]);
 
   function displayFiles() {
-    return [...submissions.keys()].map((key) => {
-      return <DisplayLink url={key} name={submissions.get(key)} key={key} />;
+    if (submissions.length === 0) {
+      return (
+        <div>
+          <h6>Currently, you do not have any submissions</h6>
+        </div>
+      );
+    }
+    return submissions.map((record) => {
+      return <DisplayLink record={record} key={record._id} />;
     });
   }
 
