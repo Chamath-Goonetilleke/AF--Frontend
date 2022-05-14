@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import axios from "axios";
+<<<<<<< HEAD
  import { requestTopicSepervisor } from "../../services/StudentService";
 
+=======
+import { requestTopicSepervisor } from "../../services/StudentService";
+>>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
 
 export default function RequestSupervisor() {
   const [goSteps, setGoSteps] = useState(0);
@@ -15,7 +19,10 @@ export default function RequestSupervisor() {
   const [message, setmessage] = useState("");
   const userRole = "Co-Supervisor";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
   function getData(e) {
     e.preventDefault();
 

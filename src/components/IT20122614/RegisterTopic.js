@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
 export default function RegisterTopic() {
   const [topic, setSubject] = useState("");
   const [message, setMessage] = useState("");

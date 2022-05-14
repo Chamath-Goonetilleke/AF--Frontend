@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import axios from "axios";
+<<<<<<< HEAD
  import { requestTopicSepervisor } from "../../services/StudentService";
+=======
+import { requestTopicSepervisor } from "../../services/StudentService";
+>>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
 
 export default function RequestSupervisor() {
   const [goSteps, setGoSteps] = useState(0);
@@ -45,11 +49,15 @@ export default function RequestSupervisor() {
       message,
       userRole,
     };
+<<<<<<< HEAD
     // console.log(topicObj)
+=======
+>>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
 
     try {
       const value = requestTopicSepervisor(topicObj);
       console.log(value);
+<<<<<<< HEAD
       alert("topic requested");
     } catch (err) {
       alert(err);
@@ -57,6 +65,13 @@ export default function RequestSupervisor() {
     }
 
     
+=======
+    } catch (err) {
+      console.log(err);
+    }
+
+    console.log(topicObj);
+>>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
     setGoSteps(2);
   }
 
@@ -278,7 +293,11 @@ export default function RequestSupervisor() {
         <Step
           className="stepperstylings"
           onClick={() => setGoSteps(1)}
+<<<<<<< HEAD
           label="Requested"
+=======
+          label="Request"
+>>>>>>> c6e851cc29cef0500b3ab6c23138a64cb685e6fe
         />
       </Stepper>
     </div>
