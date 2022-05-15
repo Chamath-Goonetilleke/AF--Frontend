@@ -49,9 +49,9 @@ export default function Markings() {
   function markingRubricList() {
     if (markingRubrics.length === 0) {
       return (
-        <div>
-          <h6>Marking Rubrics not found. Please contact admininstrator</h6>
-        </div>
+        <tr>
+          <td>Marking rubricks not found. Please contact administrator</td>
+        </tr>
       );
     }
     return markingRubrics.map((record) => {

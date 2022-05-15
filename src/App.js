@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 import AcceptedStaffResearchTopics from "./components/staff/StaffResearchAcceptedTopics";
 import StaffResearchTopicRequests from "./components/staff/StaffResearchTopicRequests";
 import Chat from "./components/chat/Chat";
 import Markings from "./components/staff/Markings";
 import InsertMark from "./components/staff/InsertMark";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

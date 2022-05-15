@@ -36,15 +36,14 @@ export default function Submissions(props) {
     }
 
     getRecords();
-    console.log(submissions);
   }, [submissions.size]);
 
   function displayFiles() {
     if (submissions.length === 0) {
       return (
-        <div>
-          <h6>Currently, you do not have any submissions</h6>
-        </div>
+        <tr>
+          <td>Currently, you do not have any submissions</td>
+        </tr>
       );
     }
     return submissions.map((record) => {

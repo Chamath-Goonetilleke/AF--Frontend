@@ -63,9 +63,9 @@ export default function AcceptedStaffResearchTopics() {
   function acceptedResearchTopicsList() {
     if (acceptedResearchTopics.length === 0) {
       return (
-        <div>
-          <h6>Currenly, you do not have accepted research topics</h6>
-        </div>
+        <tr>
+          <td>Currently, you do not have any accepted research topics</td>
+        </tr>
       );
     }
     return acceptedResearchTopics.map((record) => {

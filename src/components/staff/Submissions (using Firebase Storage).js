@@ -32,6 +32,13 @@ export default function Submissions(props) {
   }, [submissions.size]);
 
   function displayFiles() {
+    if (submissions.size === 0) {
+      return (
+        <tr>
+          <td>Currently, you do not have any submissions</td>
+        </tr>
+      );
+    }
     return [...submissions.keys()].map((key) => {
       return <DisplayLink url={key} name={submissions.get(key)} key={key} />;
     });

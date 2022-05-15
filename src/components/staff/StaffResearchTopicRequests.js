@@ -80,9 +80,9 @@ export default function StaffResearchTopicRequests() {
   function researchTopicRequestsList() {
     if (researchTopicRequests.length === 0) {
       return (
-        <div>
-          <h6>Currenly, you do not have research topic requests</h6>
-        </div>
+        <tr>
+          <td>Currently, you do not have any research topics requests</td>
+        </tr>
       );
     }
     return researchTopicRequests.map((record) => {

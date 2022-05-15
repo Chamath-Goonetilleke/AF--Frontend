@@ -32,9 +32,9 @@ export default function CriteriaList(props) {
   function markingCriteriaList() {
     if (markingCriterias.length === 0) {
       return (
-        <div>
-          <h6>Marking Criterias not found.</h6>
-        </div>
+        <tr>
+          <td>Marking criterias not found. Please contact administrator</td>
+        </tr>
       );
     }
     return markingCriterias.map((record) => {
