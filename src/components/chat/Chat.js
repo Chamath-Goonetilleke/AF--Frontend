@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Pusher from "pusher-js";
-
-import config from "../../config.json";
+import { getChats, sendMessage } from "../../services/chatServices";
 
 import "./ChatStyles.css";
 
@@ -32,18 +31,9 @@ export default function Chat() {
 
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(
-        `${config.API}/chat/${params.id1.toString()}`
-      );
+      const response = (await getChats(params.id1.toString())).data;
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const records = await response.json();
-      setMessages(records);
+      setMessages(response);
     }
 
     getRecords();
@@ -93,16 +83,7 @@ export default function Chat() {
     const newMessage = { ...form };
     setForm({ Message: "", SendBy: params.id0.toString() });
 
-    await fetch(`${config.API}/chat/${params.id1.toString()}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newMessage),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
+    await sendMessage(params.id1.toString(), newMessage);
   }
 
   return (

@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import config from "../../config.json";
+import {
+  acceptTopicRequest,
+  declineTopicRequest,
+  topicRequests,
+} from "../../services/staffServices";
 
 import "./Styles.css";
 
@@ -42,36 +45,23 @@ export default function StaffResearchTopicRequests() {
 
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(
-        `${config.API}/staff/requests/${params.id.toString()}`
-      );
+      const response = (await topicRequests(params.id.toString())).data;
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const records = await response.json();
-      setresearchTopicRequests(records);
+      setresearchTopicRequests(response);
     }
 
     getRecords();
   }, [researchTopicRequests.length]);
 
   async function acceptResearchTopicRequest(id) {
-    await fetch(`${config.API}/staff/requests/accept/${id}`, {
-      method: "PUT",
-    });
+    await acceptTopicRequest(id);
 
     const newRecords = researchTopicRequests.filter((el) => el._id !== id);
     setresearchTopicRequests(newRecords);
   }
 
   async function declineResearchTopicRequest(id) {
-    await fetch(`${config.API}/staff/requests/decline/${id}`, {
-      method: "PUT",
-    });
+    await declineTopicRequest(id);
 
     const newRecords = researchTopicRequests.filter((el) => el._id !== id);
     setresearchTopicRequests(newRecords);

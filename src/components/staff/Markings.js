@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import CriteriaList from "./CriteriaList";
 import Submissions from "./Submissions";
-
-import config from "../../config.json";
+import { getMarkingRubricks } from "../../services/staffServices";
 
 import "./Styles.css";
 
@@ -31,16 +30,9 @@ export default function Markings() {
 
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`${config.API}/staff/markings`);
+      const response = (await getMarkingRubricks(params.id.toString())).data;
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const records = await response.json();
-      setMarkingRubrics(records);
+      setMarkingRubrics(response);
     }
 
     getRecords();

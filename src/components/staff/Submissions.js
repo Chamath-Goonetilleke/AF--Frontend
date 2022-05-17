@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import config from "../../config.json";
+import { getSubmissions } from "../../services/staffServices";
 
 const DisplayLink = (props) => (
   <tr>
@@ -21,18 +21,9 @@ export default function Submissions(props) {
 
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(
-        `${config.API}/staff/submissions/${props.id}`
-      );
+      const response = (await getSubmissions(props.id.toString())).data;
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const records = await response.json();
-      setSubmissions(records);
+      setSubmissions(response);
     }
 
     getRecords();

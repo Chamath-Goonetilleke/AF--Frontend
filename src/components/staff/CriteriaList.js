@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-
-import config from "../../config.json";
+import { getCriteriaList } from "../../services/staffServices";
 
 const MarkingCriteria = (props) => (
   <tr>
@@ -14,16 +13,9 @@ export default function CriteriaList(props) {
 
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(`${config.API}/staff/markings/${props.id}`);
+      const response = (await getCriteriaList(props.id.toString())).data;
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const records = await response.json();
-      setMarkingCriterias(records);
+      setMarkingCriterias(response);
     }
 
     getRecords();

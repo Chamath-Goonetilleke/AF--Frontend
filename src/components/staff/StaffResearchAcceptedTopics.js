@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-import config from "../../config.json";
+import { acceptedRequests } from "../../services/staffServices";
 
 import "./Styles.css";
 
@@ -43,18 +42,9 @@ export default function AcceptedStaffResearchTopics() {
 
   useEffect(() => {
     async function getRecords() {
-      const response = await fetch(
-        `${config.API}/staff/topics/${params.id.toString()}`
-      );
+      const response = (await acceptedRequests(params.id.toString())).data;
 
-      if (!response.ok) {
-        const message = `An error occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
-
-      const records = await response.json();
-      setAcceptedResearchTopics(records);
+      setAcceptedResearchTopics(response);
     }
 
     getRecords();

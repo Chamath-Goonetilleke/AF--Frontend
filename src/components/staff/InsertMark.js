@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router";
-
-import config from "../../config.json";
+import { insertMarks } from "../../services/staffServices";
 
 import "./Styles.css";
 
@@ -25,23 +24,7 @@ export default function InsertMark() {
 
     const mark = { ...form };
 
-    const response = await fetch(
-      `${config.API}/staff/insertmarks/${params.id1.toString()}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(mark),
-      }
-    ).catch((error) => {
-      window.alert(error);
-      return;
-    });
-
-    if (response.status === 406) {
-      window.alert("Cannot change submitted marks again");
-    }
+    (await insertMarks(params.id1.toString(), mark)).data;
 
     navigate(-1);
   }
