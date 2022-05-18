@@ -17,7 +17,6 @@ export default function StudentProfile() {
           borderRadius: "10px",
         }}
       >
-        
         <br />
 
         <div className="divTag">
@@ -119,10 +118,87 @@ export default function StudentProfile() {
             </li>
           </ol>
         </div>
-        <br/>
+        <br />
         <div className="divTag">
           <h4>Submit Presentation</h4>
         </div>
+        <br />
+        <div style={{ marginLeft: "20px" }}>
+          <ol>
+            <li>
+              <h6>Upload 1 ppt/pptx file</h6>
+            </li>
+            <li>
+              <h6>File name should be {"<group-id>"}.ppt</h6>
+            </li>
+
+            <li>
+              <h6>Limit to a maximum of 20 slides</h6>
+            </li>
+
+            <li>
+              <h6>Include relevant Student ID(s) on each slide</h6>
+            </li>
+            <li>
+              <h6>Plan the presentation for 10 minutes</h6>
+            </li>
+            <li>
+              <h6>
+                Submit Presentation{" "}
+                <a className="btnProfile" href="/submit-presentation">
+                  Click here
+                </a>
+              </h6>
+            </li>
+          </ol>
+        </div>
+
+        <br />
+        <br />
+        <div className="divTag">
+          <h4>Submit Final Report</h4>
+        </div>
+        <br />
+        <div style={{ marginLeft: "20px" }}>
+          <ol>
+            <li>
+              <h6>Report must be in PDF format.</h6>
+            </li>
+            
+            <li>
+              <h6>
+                Submit Report{" "}
+                <a className="btnProfile" href="/submit-report">
+                  Click here
+                </a>
+              </h6>
+            </li>
+          </ol>
+        </div>
+
+        <br />
+        <br />
+        <div className="divTag">
+          <h4>Submit Proposal</h4>
+        </div>
+        <br />
+        <div style={{ marginLeft: "20px" }}>
+          <ol>
+            <li>
+              <h6>Proposal must be in PDF format.</h6>
+            </li>
+            
+            <li>
+              <h6>
+                Submit Report{" "}
+                <a className="btnProfile" href="/submit-report">
+                  Click here
+                </a>
+              </h6>
+            </li>
+          </ol>
+        </div>
+
         <br />
         <br />
       </div>

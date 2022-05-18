@@ -1,36 +1,44 @@
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import axios from "axios";
-import { requestTopicSepervisor } from "../../services/StudentService";
+import { requestTopicSepervisor,getSupervisor } from "../../services/StudentService";
 
 export default function RequestSupervisor() {
   const [goSteps, setGoSteps] = useState(0);
   const [supervisor, setSelectSupervisor] = useState("");
   const [supervisors, setSupervisors] = useState([]);
   const [supervisorname, setSelectSupervisorname] = useState("");
-  const [supervisorid, setSelectSupervisorid] = useState("");
+//  const [uId, setUId] = useState("");
+  const [uId, setSelectSupervisorid] = useState("");
   const [supervisorField, setSupervisorField] = useState("");
   const [topic, setTopic] = useState("");
   const [message, setmessage] = useState("");
   const userRole = "Supervisor";
 
-  function getData(e) {
+  async function getData(e) {
     e.preventDefault();
 
     if (supervisor === "" || supervisor == null) {
       console.log("Please enter value");
     } else {
-      axios
-        .get("http://localhost:8081/api/students/getsupervisor", {
-          params: { field: supervisor, userRole: userRole},
-        })
-        .then((res) => {
-          console.log(res.data);
-          setSupervisors(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // axios
+      //   .get("http://localhost:8081/api/students/getsupervisor", {
+      //     params: { field: supervisor, userRole: userRole},
+      //   })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     setSupervisors(res.data);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      const sendData = {
+        supervisor,
+        userRole,
+      };
+      const response = await getSupervisor(sendData);
+      console.log(response.data);
+      setSupervisors(response.data);
     }
   }
 
@@ -38,8 +46,7 @@ export default function RequestSupervisor() {
     e.preventDefault();
 
     const topicObj = {
-      supervisorid,
-      supervisorname,
+      uId,
       supervisorField,
       topic,
       message,
@@ -70,7 +77,7 @@ export default function RequestSupervisor() {
         <div className="insideCard">
           {goSteps === 0 && (
             <center>
-              <h5>Select Superviser</h5>
+              <h5>Select Supervisers</h5>
               <div>
                 <div className="container">
                   <form
@@ -144,7 +151,8 @@ export default function RequestSupervisor() {
                     {supervisors.map(function (supervisor, key) {
                       return (
                         <tr key={key}>
-                          <td>{supervisor.id}</td>
+                          
+                          <td>{key+1}</td>
                           <td>{supervisor.name}</td>
                           <td>
                             <button
@@ -152,7 +160,7 @@ export default function RequestSupervisor() {
                               onClick={() => (
                                 setGoSteps(1),
                                 setSelectSupervisorname(supervisor.name),
-                                setSelectSupervisorid(supervisor.id),
+                                setSelectSupervisorid(supervisor._id),
                                 setSupervisorField(supervisor.researchField)
                               )}
                               type="submit"

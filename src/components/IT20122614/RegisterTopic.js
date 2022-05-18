@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { registerTopicCallery } from "../../services/StudentService";
 
 export default function RegisterTopic() {
   const [topic, setSubject] = useState("");
@@ -9,7 +10,6 @@ export default function RegisterTopic() {
   const groupid = "SE3030_GRP_" + Math.floor(Math.random() * 100);
 
   function sendData(e) {
-
     const formData = new FormData();
     var form = document.getElementById("form");
 
@@ -27,20 +27,37 @@ export default function RegisterTopic() {
     //   topic,
     //   file,
     // };
-    
-    axios
-      .post("http://localhost:8081/api/students/uploads", formData)
-      .then(() => {
-        alert("Topic added successfully");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    // axios
+    //   .post("http://localhost:8081/api/students/uploads", formData)
+    //   .then(() => {
+    //     alert("Topic added successfully");
+    //     setSubject("");
+    //     setMessage("");
+    //     setFile("");
+    //     setField("");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    try {
+      const response = registerTopicCallery(formData);
+      console.log(response);
+      setSubject("");
+      setMessage("");
+      setFile("");
+      setField("");
+      alert("Topic added successfully");
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
     <div>
-      <br/><br/>
+      <br />
+      <br />
       <div className="container cardBackgroudcolor">
         <center>
           <h3 className="primarycolor primaryfontfamily">Topic Registration</h3>
@@ -62,6 +79,7 @@ export default function RegisterTopic() {
                 />
               </div>
             </div>
+            <br />
             <div className="form-group row setingmargin">
               <label className="col-sm-2 col-form-label">Message</label>
               <div className="col-sm-10">
@@ -76,6 +94,7 @@ export default function RegisterTopic() {
                 ></textarea>
               </div>
             </div>
+            <br />
             <div className="form-group row setingmargin">
               <label className="col-sm-2 col-form-label">Attachment</label>
               <div className="col-sm-10">
@@ -89,6 +108,7 @@ export default function RegisterTopic() {
                 />
               </div>
             </div>
+            <br />
             <div className="form-group row setingmargin">
               <label className="col-sm-2 col-form-label">Research Field</label>
               <div className="col-sm-10">

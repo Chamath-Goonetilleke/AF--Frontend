@@ -11,6 +11,10 @@ export function requestTopicSepervisor(data) {
 export function makeGroupOnly(data) {
   return ApiCaller.post(url + "/students/add", data);
 }
-export function getSupervisor(data) {
-  return ApiCaller.get(url + "/students/getsupervisor", {params: { field: data }},);
+export async function getSupervisor(data) {
+  return await ApiCaller.get(url + "/students/getsupervisor", {params: { field: data.supervisor, userRole: data.userRole }},);
 }
+export function registerTopicCallery(data) {
+  return ApiCaller.post(url + "/students/uploads", data);
+}
+

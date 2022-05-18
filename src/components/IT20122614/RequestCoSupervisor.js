@@ -1,37 +1,47 @@
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
 import axios from "axios";
- import { requestTopicSepervisor } from "../../services/StudentService";
-
+import {
+  requestTopicSepervisor,
+  getSupervisor,
+} from "../../services/StudentService";
 
 export default function RequestSupervisor() {
   const [goSteps, setGoSteps] = useState(0);
   const [supervisor, setSelectSupervisor] = useState("");
   const [supervisors, setSupervisors] = useState([]);
   const [supervisorname, setSelectSupervisorname] = useState("");
-  const [supervisorid, setSelectSupervisorid] = useState("");
+  const [uId, setSelectSupervisorid] = useState("");
   const [supervisorField, setSupervisorField] = useState("");
   const [topic, setTopic] = useState("");
   const [message, setmessage] = useState("");
   const userRole = "Co-Supervisor";
 
-  function getData(e) {
+  async function getData(e) {
     e.preventDefault();
 
     if (supervisor === "" || supervisor == null) {
       console.log("Please enter value");
     } else {
-      axios
-        .get("http://localhost:8081/api/students/getsupervisor", {
-          params: { field: supervisor,userRole: userRole },
-        })
-        .then((res) => {
-          console.log(res.data);
-          setSupervisors(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      // axios
+      //   .get("http://localhost:8081/api/students/getsupervisor", {
+      //     params: { field: supervisor,userRole: userRole },
+      //   })
+      //   .then((res) => {
+      //     console.log(res.data);
+      //     setSupervisors(res.data);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      const sendData = {
+        supervisor,
+        userRole,
+      };
+      //alert(sendData.userRole);
+      const response = await getSupervisor(sendData);
+      console.log(response.data);
+      setSupervisors(response.data);
     }
   }
 
@@ -39,8 +49,7 @@ export default function RequestSupervisor() {
     e.preventDefault();
 
     const topicObj = {
-      supervisorid,
-      supervisorname,
+      uId,
       supervisorField,
       topic,
       message,
@@ -60,7 +69,8 @@ export default function RequestSupervisor() {
 
   return (
     <div className="container cardBackgroudcolor">
-      <br/><br/>
+      <br />
+      <br />
       {/* <center>
         <h1>Select Superviser</h1>
       </center> */}
@@ -273,12 +283,17 @@ export default function RequestSupervisor() {
           onClick={() => setGoSteps(0)}
           label="Select"
         />
-        <hr />
+        <Step
+          className="stepperstylings"
+          onClick={() => setGoSteps(2)}
+          label="Requested"
+        />
+        {/* <hr />
         <Step
           className="stepperstylings"
           onClick={() => setGoSteps(1)}
           label="Request"
-        />
+        /> */}
       </Stepper>
     </div>
   );
