@@ -7,14 +7,15 @@ import StudentUpdate from "./Users/studentUpdateModal";
 
 export default class AdminProfile extends Component {
   state = {
-    currentItem: "Groups",
+    currentItem: localStorage.getItem("adCI") || "Groups",
   };
   handleNavSelect = (item) => {
-    this.setState({ currentItem: item });
+    localStorage.setItem("adCI", item);
+    this.setState({currentItem:item})
   };
   render() {
     const items = ["Groups", "Documents", "Users", "Report"];
-    const currentItem = this.state.currentItem;
+    const currentItem = localStorage.getItem("adCI") || this.state.currentItem;
     return (
       <div style={{ marginTop: "5rem" }}>
         <center>
@@ -33,7 +34,7 @@ export default class AdminProfile extends Component {
           ) : currentItem === "Users" ? (
             <AdminUsers />
           ) : currentItem === "Report" ? (
-            <StudentUpdate/>
+            <div>re</div>
           ) : null}
         </div>
       </div>

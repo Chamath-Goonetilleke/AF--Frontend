@@ -14,7 +14,7 @@ export function loginWithJwt(jwt) {
   localStorage.setItem("token", jwt);
 }
 export function logout() {
-  localStorage.removeItem("token");
+  window.localStorage.clear();
 }
 
 export function getCurrentUser() {

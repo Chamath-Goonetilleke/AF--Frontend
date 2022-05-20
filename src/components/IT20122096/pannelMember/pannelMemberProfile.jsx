@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { getUser } from "../../../services/userServices";
 import NavbarInside from "../common/navbarInside";
 import PannelMemberGroups from "./pannelMemberGroups";
+import TopicRequestList from "./topicRequestList";
 
 class PannelMemberProfile extends Component {
   state = {
     items: ["Groups", "Request", "Documents", "Reports"],
-    currentNavItem: "Groups",
     currentItem: "Groups",
     pageSize: 3,
     currentPage: 1,
@@ -38,9 +38,9 @@ class PannelMemberProfile extends Component {
           {currentItem === "Groups" ? (
             <PannelMemberGroups />
           ) : currentItem === "Request" ? (
-            <div>req</div>
+            <TopicRequestList />
           ) : currentItem === "Documents" ? (
-            <div>docs</div>
+            <div>docss</div>
           ) : currentItem === "Reports" ? (
             <div>repo</div>
           ) : null}

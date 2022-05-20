@@ -6,7 +6,6 @@ import Co_SupervisorGroups from "./co-supervisorGroups";
 class CosupervisorProfile extends Component {
   state = {
     items: ["Groups", "Request", "Documents", "Reports"],
-    currentNavItem: "Groups",
     currentItem: "Groups",
     pageSize: 3,
     currentPage: 1,

@@ -10,12 +10,15 @@ import SearchBar from "../../common/searchBar";
 import Page from "../../common/pagination";
 import StudentUpdate from "./studentUpdateModal";
 
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 class StudentTable extends Component {
   state = {
     groups: [],
     groupMembers: [],
     pagedGroups: [],
-    pageSize: 2,
+    pageSize: 4,
     searchResult: "",
     currentPage: 1,
     itemCount: 0,
@@ -58,16 +61,19 @@ class StudentTable extends Component {
     this.setState({ currentPage: page });
   };
   //TODO:update need atention
-    
+
   handleOnUpdate = async (id) => {
     const { data: member } = await getGroupMemberById(id);
     this.setState({ member });
     this.setState({ memberId: id });
   };
+  onClose = () => {
+    this.setState({ memberId: "" });
+  };
   handleOnDelete = async (id) => {
     try {
       await deleteGroupMember(id);
-      window.location="/profile"
+      window.location = "/profile";
     } catch (error) {
       console.log(error);
     }
@@ -125,15 +131,16 @@ class StudentTable extends Component {
                     .map((member) => (
                       <tr key={member._id}>
                         <div style={{ padding: "5px" }}>
-                          <button
-                            type="button"
-                            className="btn btn-warning btn-sm"
+                          <Button
+                            variant="contained"
+                            color="warning"
+                            size="small"
                             data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop"
                             onClick={() => this.handleOnUpdate(member._id)}
                           >
                             Update
-                          </button>
+                          </Button>
                         </div>
                       </tr>
                     ))}
@@ -144,12 +151,16 @@ class StudentTable extends Component {
                     .map((member) => (
                       <tr key={member._id}>
                         <div style={{ padding: "5px" }}>
-                          <button
-                            className="btn btn-danger btn-sm"
+                          <Button
+                            variant="contained"
+                            color="error"
+                            size="small"
+                            startIcon={<DeleteIcon />}
+                            style={{ marginLeft: "1rem" }}
                             onClick={() => this.handleOnDelete(member._id)}
                           >
                             Delete
-                          </button>
+                          </Button>
                         </div>
                       </tr>
                     ))}
@@ -166,10 +177,13 @@ class StudentTable extends Component {
             marginRight: "5rem",
           }}
         >
-          <StudentUpdate
-            member={this.state.member}
-            memberId={this.state.memberId}
-          />
+          {this.state.memberId !== "" && (
+            <StudentUpdate
+              member={this.state.member}
+              memberId={this.state.memberId}
+              onClose={this.onClose}
+            />
+          )}
 
           <Page
             itemCount={this.state.itemCount}

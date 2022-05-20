@@ -1,26 +1,29 @@
 import React, { Component } from "react";
 import NavbarInside from "../common/navbarInside";
 import SupervisorGroups from "./supervisorGroups";
-
+import { getUser } from "../../../services/userServices";
 class SupervisorProfile extends Component {
   state = {
     items: ["Groups", "Request", "Documents", "Reports"],
-    currentNavItem: "Groups",
     currentItem: "Groups",
     pageSize: 3,
     currentPage: 1,
+    user:{}
   };
-
+ async componentDidMount() { 
+    const { data: user } = await getUser();
+    this.setState({ user });
+   }
   handleChange = (item) => {
     this.setState({ currentItem: item });
   };
 
   render() {
-    const { items, currentItem } = this.state;
+    const { items, currentItem,user } = this.state;
     return (
       <div>
         <center>
-          <h1>Supervisor</h1>
+          <h1>Supervisor : {user.name }</h1>
         </center>
         <div>
           <NavbarInside

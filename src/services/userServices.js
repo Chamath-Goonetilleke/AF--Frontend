@@ -10,6 +10,12 @@ export async function getUser() {
   const id = localStorage.getItem("userId")
   return await http.get(endpoint+`/${id}`);
 }
+export async function getStaff(id) {
+  
+  return await http.get(endpoint + `/${id}`);
+}
+
+
 export async function addUser(data) {
   let user = {};
   if (data.userRole === "Student") {
@@ -33,4 +39,12 @@ export async function addUser(data) {
   const response = await http.post(endpoint, user);
   console.log(response.data);
   return response;
+}
+
+export async function updateUser(id,data) {
+  return await http.put(endpoint + `/${id}`, data);
+}
+
+export async function deleteUser(id) {
+  return await http.delete(endpoint + `/${id}`);
 }

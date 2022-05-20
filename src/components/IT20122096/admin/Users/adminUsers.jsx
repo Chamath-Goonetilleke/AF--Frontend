@@ -4,7 +4,7 @@ import SideMenuList from "../../common/sideMenuList";
 import Page from "../../common/pagination";
 import StudentTable from "./studentTable";
 import { getGroups } from "../../../../services/adminService";
-import StaffTable from "../../common/staffTable";
+import StaffTable from "./staffTable";
 import SearchBar from "../../common/searchBar";
 
 class AdminUsers extends Component {
@@ -22,20 +22,13 @@ class AdminUsers extends Component {
 
   async componentDidMount() {
     {
-      const userRoles = [];
       const { data: users } = await getUsers();
       const { data: groups } = await getGroups();
-      const itemCount = groups.length;
-      users.map((user) => {
-        if (user.userRole !== "Admin") {
-          userRoles.push(user.userRole);
-        }
-      });
-      this.setState({ userRoles, users, groups, itemCount });
+      this.setState({ users, groups});
     }
   }
   handleSearch = (query) => {
-    const { searchResult, users, currentItem } = this.state;
+    const {currentItem } = this.state;
     this.setState({
       currentPage: 1,
       searchResult: query,
@@ -150,7 +143,7 @@ class AdminUsers extends Component {
               />
             </div>
           ) : (
-            <div></div>
+            null
           )}
         </div>
       </div>

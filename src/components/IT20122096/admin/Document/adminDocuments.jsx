@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MarkingScheme from "./adminMarkingScheme";
 import SideMenuList from "../../common/sideMenuList";
+import DocumentTemplate from "./documentTemplates";
 
 class AdminDocuments extends Component {
   state = {
@@ -19,11 +20,11 @@ class AdminDocuments extends Component {
           currentItem={currentItem}
           onChange={this.handleChange}
         />
-        <div>
+        <div style={{width:"70rem"}}>
           {currentItem === "Marking Schemas" ? (
             <MarkingScheme/>
           ) : currentItem === "Document Templates" ? (
-            <div>templates</div>
+            <DocumentTemplate/>
           ) : null}
         </div>
       </div>

@@ -1,25 +1,27 @@
-import React, { Component } from 'react';
-import { createCriteria } from '../../../../services/markingCriteria';
-import Form from '../../common/form';
+import React from "react";
+import Form from "../../common/form";
+import { updateUser } from "../../../../services/userServices";
 
-class Criteria extends Form {
+class StaffUpdate extends Form {
   state = {
     data: {
-      name: "",
-      value: "",
+      name: this.props.member.name,
+      email: this.props.member.email,
+      researchField: this.props.member.researchField,
     },
     errors: {},
   };
+  componentDidMount() {
+    console.log(this.props.member);
+  }
+
   handleUpdate = async () => {
-    const data = {
-      ...this.state.data,
-      markingRubrikId: this.props.marking._id,
-    };
-    const response = "";
+    const id = this.props.memberId;
     try {
-      response = await createCriteria(data);
+      await updateUser(id,this.state.data)
+      window.location = "/profile";
     } catch (error) {
-      console.log(response.data);
+      console.log(error);
     }
   };
   render() {
@@ -27,7 +29,7 @@ class Criteria extends Form {
       <div>
         <div
           className="modal fade"
-          id="markingCriteria"
+          id="staffupdate"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
           tabIndex="-1"
@@ -38,8 +40,8 @@ class Criteria extends Form {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="staticBackdropLabel">
-                  <span>
-                    Add Criterias to {this.props.marking.name}
+                  <span style={{ marginLeft: "8rem" }}>
+                    Update Staff Details
                   </span>
                 </h5>
                 <button
@@ -47,12 +49,18 @@ class Criteria extends Form {
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  onClick={() => this.props.onClose()}
                 ></button>
               </div>
               <div className="modal-body">
                 <form>
-                  {this.renderInputField("Enter Criteria", "name", "text")}
-                  {this.renderInputField("Enter Value", "value", "text")}
+                  {this.renderInputField("Name", "name", "text")}
+                  {this.renderInputField("Email", "email", "text")}
+                  {this.renderInputField(
+                    "Research Field",
+                    "researchField",
+                    "text"
+                  )}
                 </form>
               </div>
               <div className="modal-footer">
@@ -60,16 +68,16 @@ class Criteria extends Form {
                   type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
-                  onClick={()=>window.location="/profile"}
+                  onClick={() => this.props.onClose()}
                 >
-                  Done
+                  Close
                 </button>
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={() => this.handleUpdate()}
                 >
-                  Create Criteria
+                  Save Changes
                 </button>
               </div>
             </div>
@@ -79,5 +87,5 @@ class Criteria extends Form {
     );
   }
 }
- 
-export default Criteria;
+
+export default StaffUpdate;
