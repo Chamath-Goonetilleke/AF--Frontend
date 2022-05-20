@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { getGroupMember, getGroups } from "../../../services/adminService";
-import { getUser } from "../../../services/userServices";
+import { getGroupMember, getGroups } from "../../../services/IT20122096/adminService";
+import { getUser } from "../../../services/IT20122096/userServices";
 
-import Icon from "@mui/material/Icon";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
 
 class StudentGroup extends Component {
   state = { user: {}, group: {}, isUser: false };
@@ -66,7 +67,7 @@ class StudentGroup extends Component {
               </div>
             </React.Fragment>
           ) : (
-            <button
+            <Button
               className="card-body"
               style={{
                 width: "20rem",
@@ -79,15 +80,16 @@ class StudentGroup extends Component {
                   height: "8rem",
                 }}
               >
-                <Icon
-                  baseClassName="fas"
-                  className="fa-plus-circle"
-                  fontSize="small"
-                />
+                <center>
+                  <Avatar sx={{ width: 80, height: 80 }}>
+                    <span style={{fontSize:"3rem"}}>+</span>
+                  </Avatar>
+                </center>
+
                 <br />
                 <p>Create a Group</p>
               </div>
-            </button>
+            </Button>
           )}
         </div>
       </div>

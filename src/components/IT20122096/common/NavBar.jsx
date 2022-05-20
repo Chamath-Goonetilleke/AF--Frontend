@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom';
-import { logout } from '../../../services/authServices';
+import { logout } from './../../../services/IT20122096/authServices';
+
 
 const NavBar = ({user}) => {
   return (

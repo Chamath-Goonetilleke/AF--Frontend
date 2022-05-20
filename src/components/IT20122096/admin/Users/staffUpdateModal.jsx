@@ -1,6 +1,8 @@
 import React from "react";
 import Form from "../../common/form";
-import { updateUser } from "../../../../services/userServices";
+import { updateUser } from "../../../../services/IT20122096/userServices";
+import Joi from "joi-browser";
+import { toast } from "react-toastify";
 
 class StaffUpdate extends Form {
   state = {
@@ -11,18 +13,26 @@ class StaffUpdate extends Form {
     },
     errors: {},
   };
+  schema = {
+    name: Joi.string().required(),
+    email: Joi.string().email().required(),
+    researchField: Joi.string().required(),
+  };
   componentDidMount() {
     console.log(this.props.member);
   }
 
   handleUpdate = async () => {
     const id = this.props.memberId;
-    try {
-      await updateUser(id,this.state.data)
-      window.location = "/profile";
-    } catch (error) {
-      console.log(error);
-    }
+
+    await updateUser(id, this.state.data)
+      .then(() => {
+        toast.success("Successfully Updated", { autoClose: 1000 });
+        setTimeout(() => (window.location = "/profile"), 2000);
+      })
+      .catch((error) => {
+        toast.error(error.response.data);
+      });
   };
   render() {
     return (
@@ -52,8 +62,8 @@ class StaffUpdate extends Form {
                   onClick={() => this.props.onClose()}
                 ></button>
               </div>
-              <div className="modal-body">
-                <form>
+              <form onSubmit={this.handleSubmit}>
+                <div className="modal-body">
                   {this.renderInputField("Name", "name", "text")}
                   {this.renderInputField("Email", "email", "text")}
                   {this.renderInputField(
@@ -61,25 +71,25 @@ class StaffUpdate extends Form {
                     "researchField",
                     "text"
                   )}
-                </form>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  onClick={() => this.props.onClose()}
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => this.handleUpdate()}
-                >
-                  Save Changes
-                </button>
-              </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onClick={() => this.props.onClose()}
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => this.handleUpdate()}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

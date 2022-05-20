@@ -3,8 +3,7 @@ import {
   delteTemplates,
   getTemplates,
   uploadTemplate,
-} from "../../../../services/templateService";
-import DropDownList from "./../../common/dropDownList";
+} from "../../../../services/IT20122096/templateService";
 
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -12,6 +11,7 @@ import Button from "@mui/material/Button";
 import Input from "./../../common/input";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { toast } from "react-toastify";
 
 class DocumentTemplate extends Component {
   state = {
@@ -23,7 +23,6 @@ class DocumentTemplate extends Component {
       "Final Thesis Template",
     ],
     templates: [],
-    fileInputState: "",
     selectedFile: "",
     currentTemplate: "",
   };
@@ -32,7 +31,7 @@ class DocumentTemplate extends Component {
     const { data: templates } = await getTemplates();
     this.setState({ templates });
   }
-  handleDropChange = (e) => {
+  handleInputChange = (e) => {
     const { value: currentTemplate } = e.currentTarget;
     this.setState({ currentTemplate });
     console.log(currentTemplate);
@@ -42,23 +41,23 @@ class DocumentTemplate extends Component {
     const file = e.target.files[0];
     this.setState({ selectedFile: file });
   };
-  handleDelete = async(id) => {
-    try {
-      await delteTemplates(id);
-      window.location = "/profile";
-    } catch (error) {
-      
-    }
-  }
+  handleDelete = async (id) => {
+    await delteTemplates(id).then(() => {
+      toast.success("Deleted Successfully",{autoClose:1000})
+      setTimeout(() => window.location = "/profile", 2000);
+    }).catch((error) => {
+       toast.error(error.response.data);
+    })
+  };
   uploadImage = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("template", this.state.selectedFile);
-      await uploadTemplate(formData, this.state.currentTemplate);
-      window.location="/profile"
-    } catch (error) {
-      console.error(error);
-    }
+    const formData = new FormData();
+    formData.append("template", this.state.selectedFile);
+    await toast.promise(uploadTemplate(formData, this.state.currentTemplate), {
+      pending: "Uploading",
+      success: "Uploaded Successfully",
+      error: "Something Went Wrong",
+    });
+    setTimeout(() => window.location = "/profile", 1000);
   };
 
   handleSubmit = (e) => {
@@ -68,7 +67,7 @@ class DocumentTemplate extends Component {
     this.uploadImage(this.state.selectedFile);
   };
   render() {
-    const { templates, templateNames } = this.state;
+    const { templates, selectedFile, currentTemplate } = this.state;
     return (
       <div>
         <div style={{ width: "40%", marginBottom: "2rem", marginLeft: "60%" }}>
@@ -78,7 +77,7 @@ class DocumentTemplate extends Component {
                 label="Create new Template"
                 name="template"
                 type="text"
-                onChange={this.handleDropChange}
+                onChange={this.handleInputChange}
               />
               <div style={{ display: "flex" }}>
                 <input
@@ -92,6 +91,7 @@ class DocumentTemplate extends Component {
                     marginRight: "1rem",
                   }}
                   onChange={(e) => this.handleChange(e)}
+                  disabled={currentTemplate === ""}
                 />
 
                 <Button
@@ -103,6 +103,7 @@ class DocumentTemplate extends Component {
                     marginTop: "1rem",
                     marginBottom: "1rem",
                   }}
+                  disabled={selectedFile === ""}
                 >
                   Upload
                 </Button>

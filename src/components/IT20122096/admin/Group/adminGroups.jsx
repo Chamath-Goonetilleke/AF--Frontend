@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Group from "../../common/group";
 import Page from "../../common/pagination";
-import { paginate } from "../../../../services/paginateService";
-import { getGroups } from "../../../../services/adminService";
+import { paginate } from "../../../../services/IT20122096/paginateService";
+import { getGroups } from "../../../../services/IT20122096/adminService";
 import SideMenuList from "../../common/sideMenuList";
 import SearchBar from "../../common/searchBar";
 import _ from "lodash";

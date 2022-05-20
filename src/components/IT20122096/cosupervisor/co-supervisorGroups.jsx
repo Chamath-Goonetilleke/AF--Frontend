@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { getGroups } from "../../../services/adminService";
-import { paginate } from "../../../services/paginateService";
+import { getGroups } from "../../../services/IT20122096/adminService";
+import { paginate } from "../../../services/IT20122096/paginateService";
 import Group from "../common/group";
 import Page from "../common/pagination";
 import SideMenuList from "../common/sideMenuList";
@@ -30,11 +30,36 @@ class Co_SupervisorGroups extends Component {
     this.setState({ currentPage: page });
   };
   getPageData = () => {
-    const { groups, currentPage, pageSize } = this.state;
+    const { groups, currentPage,currentItem, pageSize } = this.state;
+    let filterdGroup = [];
 
-    const filterdGroup = groups.filter(
-      (group) => group.cosupercisorid === localStorage.getItem("userId")
-    );
+    if (currentItem === "All Groups") {
+      filterdGroup = groups.filter(
+        (group) => group.cosupercisorid === localStorage.getItem("userId")
+      );
+    }
+    if (currentItem === "Submit Documents") {
+      filterdGroup = groups.filter(
+        (group) =>
+          group.cosupercisorid === localStorage.getItem("userId") &&
+          group.report !== "" &&
+          group.proposal !== ""
+      );
+    }
+    if (currentItem === "Done Marking") {
+      filterdGroup = groups.filter(
+        (group) =>
+          group.cosupercisorid === localStorage.getItem("userId") &&
+          group.isMarked===true
+      );
+    }
+    if (currentItem === "Finish the Research") {
+      filterdGroup = groups.filter(
+        (group) =>
+          group.cosupercisorid === localStorage.getItem("userId") &&
+          group.isOngoing === false
+      );
+    }
 
     const pagedGroups = paginate(filterdGroup, currentPage, pageSize);
     return { data: pagedGroups, count:filterdGroup.length };

@@ -1,21 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   createMarkingRubrik,
   deleteMarking,
   getAllMarkings,
   getMarkingById,
-} from "../../../../services/markingShemeServices";
+} from "../../../../services/IT20122096/markingShemeServices";
 import Form from "../../common/form";
 import Criteria from "./markingCriteria";
 import MarkingGenerator from "./markingSchema";
 import Markings from "./markingTable";
+
+import Button from "@mui/material/Button";
+import Joi from "joi-browser";
+import { toast } from "react-toastify";
 
 class MarkingScheme extends Form {
   state = {
     data: { name: "" },
     errors: {},
     markings: [],
-    marking: {},
+    marking: "",
+  };
+  schema = {
+    name: Joi.string().required().min(5).label("Marking Name"),
   };
 
   async componentDidMount() {
@@ -31,41 +38,52 @@ class MarkingScheme extends Form {
   };
   handleCreate = async () => {
     const { name } = this.state.data;
-    let res = "";
-    try {
-      res = await createMarkingRubrik(name);
-      this.setState({ marking: res.data });
-    } catch (error) {
-      console.log(res.data);
-    }
+
+    await createMarkingRubrik(name)
+      .then((res) => {
+        this.setState({ marking: res.data });
+        toast.success("Marking Created");
+      })
+      .catch((error) => {
+        toast.error(error.response.data);
+      });
   };
   handleOnDelete = async (id) => {
-    try {
-      await deleteMarking(id);
-      window.location = "/profile";
-    } catch (error) {
-      console.log(error);
-    }
+    await deleteMarking(id)
+      .then(() => {
+        toast.success("Deleted Successfully", { autoClose :1000});
+        setTimeout(()=>{window.location = "/profile";},2000)
+        
+      })
+      .catch((error) => {
+        toast.error(error.response.data);
+      });
   };
   handleOnView = async (id) => {
     const { data: marking } = await getMarkingById(id);
     this.setState({ marking });
   };
+  onClose = () => {
+    this.setState({ marking: "" });
+  };
   render() {
+    const { data, errors } = this.state;
     return (
-      <React.Fragment>
+      <React.Fragment>   
         <div style={{ marginTop: "2rem", width: "20rem", marginLeft: "65%" }}>
           <form onSubmit={this.handleSubmit}>
             {this.renderInputField("Enter Name", "name", "text")}
-            <button
-              className="btn btn-primary"
+            <Button
+              variant="contained"
+              color="primary"
               data-bs-toggle="modal"
               data-bs-target="#markingCriteria"
-              style={{ marginTop: "1rem", marginLeft: "7.7rem" }}
+              style={{ marginTop: "1rem", marginLeft: "5.5rem" }}
               onClick={() => this.handleCreate()}
+              disabled={data.name === "" || Object.keys(errors).length !== 0}
             >
               Create Marking Scheme
-            </button>
+            </Button>
           </form>
         </div>
         <div>
@@ -77,7 +95,12 @@ class MarkingScheme extends Form {
           />
         </div>
         <Criteria marking={this.state.marking} />
-        <MarkingGenerator marking={this.state.marking} />
+        {this.state.marking !== "" && (
+          <MarkingGenerator
+            marking={this.state.marking}
+            onClose={this.onClose}
+          />
+        )}
       </React.Fragment>
     );
   }

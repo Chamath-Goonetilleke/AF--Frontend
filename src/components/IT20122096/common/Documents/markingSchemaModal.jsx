@@ -2,7 +2,7 @@ import React from 'react'
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
-const MarkingSchemaModal = ({ name, date, criterias, getTotal, onClose }) => {
+const MarkingSchemaModal = ({ name, date, criterias, getTotal,onClose }) => {
   function getDate(postdate) {
     let date = new Date(postdate);
     let day = ("0" + date.getDate()).slice(-2);
@@ -47,7 +47,7 @@ const MarkingSchemaModal = ({ name, date, criterias, getTotal, onClose }) => {
               className="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
-              onClick={() => onClose()}
+              onClick={()=>onClose()}
             ></button>
           </div>
           <div className="modal-body">

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import NavbarInside from "../common/navbarInside";
 import StudentGroup from "./studentGroup";
-import { getUser } from "../../../services/userServices";
+import { getUser } from "../../../services/IT20122096/userServices";
+import CommonDocuments from './../common/Documents/commonDocuments';
 
 class SupervisorProfile extends Component {
   state = {
@@ -34,10 +35,8 @@ class SupervisorProfile extends Component {
           />
           {currentItem === "Group" ? (
            <StudentGroup/>
-          ) : currentItem === "Request" ? (
-            <div>req</div>
           ) : currentItem === "Documents" ? (
-            <div>docs</div>
+            <CommonDocuments/>
           ) : currentItem === "Reports" ? (
             <div>repo</div>
           ) : null}

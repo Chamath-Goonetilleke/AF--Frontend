@@ -40,8 +40,8 @@ class MarkingSchema extends Component {
           name={this.props.marking.name}
           date={this.props.marking.date}
           criterias={this.state.criterias}
-          onClose={this.props.onClose}
           getTotal={this.getTotal()}
+          onClose={this.props.onClose}
         />
       </div>
     );

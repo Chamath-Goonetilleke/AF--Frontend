@@ -1,11 +1,10 @@
 import React from 'react'
-
 import Button from "@mui/material/Button";
 
 const Markings = (props) => {
-  const { markings, getDate, onView, onDelete } = props;
+  const { markings, getDate, onView } = props;
   return (
-    <div className="container" style={{ marginTop: "2rem", width: "70rem" }}>
+    <div className="container" style={{ marginTop: "2rem", width: "60rem" }}>
       <div className="row" style={{ marginBottom: "1rem" }}>
         <div className="col" style={{ fontWeight: "bold" }}>
           Marking Name
@@ -29,21 +28,13 @@ const Markings = (props) => {
           <div className="col">{getDate(marking.date)}</div>
           <div className="col">
             <Button
-              variant="contained"
+              variant='contained'
+              color='success'
               data-bs-toggle="modal"
               data-bs-target="#markingGen"
-              color="success"
               onClick={() => onView(marking._id)}
             >
               View
-            </Button>
-            <Button
-              variant="contained"
-              style={{ marginLeft: "1rem" }}
-              color="error"
-              onClick={() => onDelete(marking._id)}
-            >
-              Delete
             </Button>
           </div>
         </div>

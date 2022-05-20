@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { deleteUser, getStaff } from "../../../../services/userServices";
+import { deleteUser, getStaff } from "../../../../services/IT20122096/userServices";
 import StaffUpdate from "./staffUpdateModal";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { toast } from "react-toastify";
 
 class StaffTable extends Component {
   state = {
@@ -12,23 +13,23 @@ class StaffTable extends Component {
   };
 
   handleUpdate = async (id) => {
-    
     const { data: member } = await getStaff(id);
-    this.setState({member});
+    this.setState({ member });
     this.setState({ memberId: id });
-   
   };
   onClose = () => {
     this.setState({ memberId: "" });
-  }
-  handleDelete = async(id) => {
-    try {
-      await deleteUser(id);
-      window.location="/profile";
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  };
+  handleDelete = async (id) => {
+    await deleteUser(id)
+      .then(() => {
+        toast.success("Successfully Deleted", { autoClose: 1000 });
+        setTimeout(() => (window.location = "/profile"), 2000);
+      })
+      .catch((error) => {
+        toast.error(error.response.data);
+      });
+  };
 
   render() {
     const { items } = this.props;

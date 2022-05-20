@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import { paginate } from "../../../../services/paginateService";
+import { paginate } from "../../../../services/IT20122096/paginateService";
 import {
   deleteGroupMember,
   getGroupMember,
   getGroupMemberById,
   getGroups,
-} from "../../../../services/adminService";
+} from "../../../../services/IT20122096/adminService";
 import SearchBar from "../../common/searchBar";
 import Page from "../../common/pagination";
 import StudentUpdate from "./studentUpdateModal";
 
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { toast } from "react-toastify";
 
 class StudentTable extends Component {
   state = {
@@ -60,7 +61,6 @@ class StudentTable extends Component {
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
-  //TODO:update need atention
 
   handleOnUpdate = async (id) => {
     const { data: member } = await getGroupMemberById(id);
@@ -71,12 +71,14 @@ class StudentTable extends Component {
     this.setState({ memberId: "" });
   };
   handleOnDelete = async (id) => {
-    try {
-      await deleteGroupMember(id);
-      window.location = "/profile";
-    } catch (error) {
-      console.log(error);
-    }
+    await deleteGroupMember(id)
+      .then(() => {
+        toast.success("Successfully Deleted", { autoClose: 1000 });
+        setTimeout(() => (window.location = "/profile"), 2000);
+      })
+      .catch((error) => {
+        toast.error(error.response.data);
+      });
   };
   render() {
     return (
@@ -136,7 +138,7 @@ class StudentTable extends Component {
                             color="warning"
                             size="small"
                             data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop"
+                            data-bs-target="#static-backdrop"
                             onClick={() => this.handleOnUpdate(member._id)}
                           >
                             Update

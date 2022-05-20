@@ -1,37 +1,44 @@
 import React from "react";
 import Form from "../../common/form";
-import { updateGroupMember } from '../../../../services/adminService';
+import { updateGroupMember } from "../../../../services/IT20122096/adminService";
+import { toast } from "react-toastify";
+import  Joi from 'joi-browser';
 class StudentUpdate extends Form {
   state = {
     data: {
       groupid: "",
       userId: "",
       name: "",
-      email:""
+      email: "",
     },
     errors: {},
   };
-  componentDidMount() { 
-    this.setState({data:this.props.member})
-   }
+  schema = {
+    groupid: Joi.string().label("Group Id"),
+    userId: Joi.string().label("Student Id"),
+    name: Joi.string().label("Name"),
+    email: Joi.string().email().label("Email"),
+  };
+  componentDidMount() {
+    this.setState({ data: this.props.member });
+  }
 
   handleUpdate = async () => {
     console.log(this.props.memberId);
-    try {
-      await updateGroupMember(this.state.data, this.props.memberId);
-      localStorage.setItem("memId", "");
-      window.location = "/profile";  
-    } catch (error) {
-      console.log(error);
-    }
-    
+
+    await updateGroupMember(this.state.data, this.props.memberId)
+      .then(() => {
+        toast.success("Successfully Updated", { autoClose: 1000 });
+        setTimeout(() => (window.location = "/profile"), 2000);
+      })
+      .catch((error) => toast.error(error.response.data));
   };
   render() {
     return (
       <div>
         <div
           className="modal fade"
-          id="staticBackdrop"
+          id="static-backdrop"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
           tabIndex="-1"
@@ -54,31 +61,31 @@ class StudentUpdate extends Form {
                   onClick={() => this.props.onClose()}
                 ></button>
               </div>
-              <div className="modal-body">
-                <form>
+              <form onSubmit={this.handleSubmit}>
+                <div className="modal-body">
                   {this.renderInputField("Group Id", "groupid", "text")}
                   {this.renderInputField("Student Id", "userId", "text")}
                   {this.renderInputField("Name", "name", "text")}
                   {this.renderInputField("Email", "email", "text")}
-                </form>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  onClick={() => this.props.onClose()}
-                >
-                  Close
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => this.handleUpdate()}
-                >
-                  Save Changes
-                </button>
-              </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onClick={() => this.props.onClose()}
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => this.handleUpdate()}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

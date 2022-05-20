@@ -1,4 +1,7 @@
 import React from "react";
+
+import Button from "@mui/material/Button";
+
 const Group = ({items}) => {
   return (
     <div>
@@ -31,12 +34,13 @@ const Group = ({items}) => {
                     {(item.panelmember && "Assigned") || "Unassigned"}
                   </p>
 
-                  <button
+                  <Button
+                    variant="contained"                    
                     style={{ width: "16rem", marginTop: "1rem" }}
                     className="btn btn-primary"
                   >
                     View
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>

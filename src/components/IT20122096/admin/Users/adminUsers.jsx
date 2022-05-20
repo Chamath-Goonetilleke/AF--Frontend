@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { getUsers } from "../../../../services/userServices";
+import { getUsers } from "../../../../services/IT20122096/userServices";
 import SideMenuList from "../../common/sideMenuList";
 import Page from "../../common/pagination";
 import StudentTable from "./studentTable";
-import { getGroups } from "../../../../services/adminService";
+import { getGroups } from "../../../../services/IT20122096/adminService";
 import StaffTable from "./staffTable";
 import SearchBar from "../../common/searchBar";
 

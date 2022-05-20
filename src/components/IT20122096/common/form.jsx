@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import Joi from "joi-browser";
+import Joi from "joi-browser";
 import DropDownList from "./dropDownList";
 import Input from "./input";
 
@@ -8,51 +8,50 @@ class Form extends Component {
     data: {},
     errors: {},
   };
-  // validate = () => {
-  //   const result = Joi.validate(this.state.data, this.schema, {
-  //     abortEarly: false,
-  //   });
+  validate = () => {
+    const result = Joi.validate(this.state.data, this.schema, {
+      abortEarly: false,
+    });
 
-  //   if (!result.error) return null;
+    if (!result.error) return null;
 
-  //   const errors = {};
-  //   for (let item of result.error.details) {
-  //     errors[item.path[0]] = item.message;
-  //   }
-  //   return errors;
-  // };
+    const errors = {};
+    for (let item of result.error.details) {
+      errors[item.path[0]] = item.message;
+    }
+    return errors;
+  };
 
-  // validateProperty(input) {
-  //   const obj = { [input.name]: input.value };
-  //   const schema = { [input.name]: this.schema };
-  //   const result = Joi.validate(obj, schema);
+  validateProperty(input) {
+    const obj = { [input.name]: input.value };
+    const schema = { [input.name]: this.schema[input.name] };
+    const result = Joi.validate(obj, schema);
 
-  //   if (!result.error) return null;
-  //   return result.error.details[0].message;
-  // }
+    if (!result.error) return null;
+    return result.error.details[0].message;
+  }
 
   handleChange = (e) => {
     const { name, value } = e.currentTarget;
-    // const errors = { ...this.state.errors };
-    // const errorMessage = this.validateProperty(e.currentTarget);
-    // console.log(errorMessage);
-    // if (errorMessage) {
-    //   errors[name] = errorMessage;
-    // } else {
-    //   delete errors[name];
-    // }
+    const errors = { ...this.state.errors };
+    const errorMessage = this.validateProperty(e.currentTarget);
+    if (errorMessage) {
+      errors[name] = errorMessage;
+    } else {
+      delete errors[name];
+    }
 
     const data = { ...this.state.data };
     data[name] = value;
-    this.setState({ data });
+    this.setState({ data,errors });
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    // const errors = this.validate();
-    // this.setState({ errors: errors || {} });
-    // if (errors) return;
+    const errors = this.validate();
+    this.setState({ errors: errors || {} });
+    if (errors) return;
 
     this.doSubmit();
   };
@@ -73,7 +72,7 @@ class Form extends Component {
   renderButton(label, className, type, onClick) {
     return (
       <React.Fragment>
-        <button type={type} className={className} onClick={onClick}>
+        <button type={type} className={className} onClick={onClick} disabled={this.validate()}>
           {label}
         </button>
       </React.Fragment>

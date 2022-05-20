@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { paginate } from "../../../../services/paginateService";
-import { getUsers } from "../../../../services/userServices";
+import { paginate } from "../../../../services/IT20122096/paginateService";
+import { getUsers } from "../../../../services/IT20122096/userServices";
 import Page from "../../common/pagination";
 import SearchBar from "../../common/searchBar";
 import PannelTable from "./pannelTable";

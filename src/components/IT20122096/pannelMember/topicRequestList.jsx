@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getTopicRequests } from '../../../services/pannelMemReqs';
+import { getTopicRequests } from '../../../services/IT20122096/pannelMemReqs';
 
 class TopicRequestList extends Component {
   state = { requests:[] };

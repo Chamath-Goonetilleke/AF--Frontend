@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AdminProfile from "./admin/adminProfile";
-import { getCurrentUser } from "../../services/authServices";
+import { getCurrentUser } from "../../services/IT20122096/authServices";
 import StudentProfile from "./student/studentProfile";
 import SupervisorProfile from "./supervisor/supervisorProfile";
 import CosupervisorProfile from "./cosupervisor/co-supervisorProfile";

@@ -1,6 +1,9 @@
-import React, { Component } from 'react';
-import { createCriteria } from '../../../../services/markingCriteria';
-import Form from '../../common/form';
+import React, { Component } from "react";
+
+import Form from "../../common/form";
+import { ToastContainer, toast } from "react-toastify";
+import  Joi  from "joi-browser";
+import { createCriteria } from "../../../../services/IT20122096/markingCriteria";
 
 class Criteria extends Form {
   state = {
@@ -10,21 +13,39 @@ class Criteria extends Form {
     },
     errors: {},
   };
+  schema = {
+    name: Joi.string().min(5).max(255),
+    value: Joi.number().min(0).max(100)
+  };
   handleUpdate = async () => {
     const data = {
       ...this.state.data,
       markingRubrikId: this.props.marking._id,
     };
-    const response = "";
-    try {
-      response = await createCriteria(data);
-    } catch (error) {
-      console.log(response.data);
-    }
+
+    await createCriteria(data)
+      .then(() => {
+        toast.success("Criteria Added", { autoClose: 1000 });
+      })
+      .catch((error) => {
+        toast.error(error.response.data);
+      });
   };
   render() {
     return (
       <div>
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
         <div
           className="modal fade"
           id="markingCriteria"
@@ -38,40 +59,38 @@ class Criteria extends Form {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title" id="staticBackdropLabel">
-                  <span>
-                    Add Criterias to {this.props.marking.name}
-                  </span>
+                  <span>Add Criterias to {this.props.marking.name}</span>
                 </h5>
                 <button
                   type="button"
                   className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  onClick={() => (window.location = "/profile")}
                 ></button>
               </div>
-              <div className="modal-body">
-                <form>
+              <form onSubmit={this.handleSubmit}>
+                <div className="modal-body">
                   {this.renderInputField("Enter Criteria", "name", "text")}
-                  {this.renderInputField("Enter Value", "value", "text")}
-                </form>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                  onClick={()=>window.location="/profile"}
-                >
-                  Done
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() => this.handleUpdate()}
-                >
-                  Create Criteria
-                </button>
-              </div>
+                  {this.renderInputField("Enter Value", "value", "number")}
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                    onClick={() => (window.location = "/profile")}
+                  >
+                    Done
+                  </button>
+                  {this.renderButton(
+                    "Create Criteria",
+                    "btn btn-primary",
+                    "submit",
+                    this.handleUpdate
+                  )}
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -79,5 +98,5 @@ class Criteria extends Form {
     );
   }
 }
- 
+
 export default Criteria;

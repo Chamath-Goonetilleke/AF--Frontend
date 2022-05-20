@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { getUser } from "../../../services/userServices";
+import { getUser } from "../../../services/IT20122096/userServices";
 import NavbarInside from "../common/navbarInside";
 import PannelMemberGroups from "./pannelMemberGroups";
 import TopicRequestList from "./topicRequestList";
+import CommonDocuments from './../common/Documents/commonDocuments';
 
 class PannelMemberProfile extends Component {
   state = {
@@ -40,7 +41,7 @@ class PannelMemberProfile extends Component {
           ) : currentItem === "Request" ? (
             <TopicRequestList />
           ) : currentItem === "Documents" ? (
-            <div>docss</div>
+            <CommonDocuments/>
           ) : currentItem === "Reports" ? (
             <div>repo</div>
           ) : null}
