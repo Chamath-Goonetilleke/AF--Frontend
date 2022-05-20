@@ -164,7 +164,7 @@ export default function StudentProfile() {
             <li>
               <h6>Report must be in PDF format.</h6>
             </li>
-            
+
             <li>
               <h6>
                 Submit Report{" "}
@@ -187,11 +187,34 @@ export default function StudentProfile() {
             <li>
               <h6>Proposal must be in PDF format.</h6>
             </li>
-            
+
             <li>
               <h6>
                 Submit Report{" "}
-                <a className="btnProfile" href="/submit-report">
+                <a className="btnProfile" href="/submit-proposal">
+                  Click here
+                </a>
+              </h6>
+            </li>
+          </ol>
+        </div>
+
+        <br />
+        <br />
+        <div className="divTag">
+          <h4>Submit Final Thesis</h4>
+        </div>
+        <br />
+        <div style={{ marginLeft: "20px" }}>
+          <ol>
+            <li>
+              <h6>Final Thesis must be in PDF format.</h6>
+            </li>
+
+            <li>
+              <h6>
+                Submit Report{" "}
+                <a className="btnProfile" href="/submit-thesis">
                   Click here
                 </a>
               </h6>

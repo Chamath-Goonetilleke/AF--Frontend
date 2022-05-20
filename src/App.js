@@ -9,6 +9,9 @@ import RequestCoSupervisor from "./components/IT20122614/RequestCoSupervisor";
 import "./App.css";
 import SubmitPresentation from "./components/IT20122614/SubmitPresentation";
 import ReportSubmission from "./components/IT20122614/ReportSubmission";
+import ProposalSubmit from "./components/IT20122614/ProposalSubmit";
+import FinalThesis from "./components/IT20122614/FinalThesis";
+
 
 function App() {
   return (
@@ -22,6 +25,8 @@ function App() {
         <Route path="/cosupervisor" exact component={RequestCoSupervisor} />
         <Route path="/submit-presentation" exact component={SubmitPresentation} />
         <Route path="/submit-report" exact component={ReportSubmission} />
+        <Route path="/submit-proposal" exact component={ProposalSubmit} />
+        <Route path="/submit-thesis" exact component={FinalThesis} />
       </Routes>
     </div>
   );

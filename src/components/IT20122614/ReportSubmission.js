@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { submitReport } from "../../services/StudentService";
 
 export default function ReportSubmission() {
   const [file, setFile] = useState([]);
@@ -12,15 +12,28 @@ export default function ReportSubmission() {
     formData.append("groupid", groupid);
     e.preventDefault();
 
-    axios
-      .put("http://localhost:8081/api/students/report", formData)
-      .then((res) => {
-        console.log(res);
-        alert("added");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // axios
+    //   .put("http://localhost:8081/api/students/report", formData)
+    //   .then((res) => {
+    //     console.log(res);
+    //     alert("added");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    try {
+      const response = submitReport(formData);
+
+      console.log(response);
+      setFile([0]);
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function () {
+        x.className = x.className.replace("show", "");
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -57,6 +70,7 @@ export default function ReportSubmission() {
             <button type="submit" className="btn btn-warning">
               Add submission
             </button>
+            <div id="snackbar">Report Submited</div>
           </center>
         </form>
       </div>

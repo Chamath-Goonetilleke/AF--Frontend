@@ -47,8 +47,11 @@ export default function RegisterTopic() {
       setMessage("");
       setFile("");
       setField("");
-      alert("Topic added successfully");
-      
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function () {
+        x.className = x.className.replace("show", "");
+      }, 1000);
     } catch (error) {
       console.log(error);
     }
@@ -157,6 +160,7 @@ export default function RegisterTopic() {
                 type="submit"
                 className="noselect btn1 defaultmargin"
               ></button>
+              <div id="snackbar">Topic Registered</div>
             </center>
           </form>
         </div>

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { submitPresantation } from "../../services/StudentService";
 
-export default function SubmitPresentation() {
+import { submitProposal } from "../../services/StudentService";
+
+export default function ProposalSubmit() {
   const [file, setFile] = useState([]);
   const groupid = "SE3030_GRP_15";
 
@@ -12,18 +13,18 @@ export default function SubmitPresentation() {
     formData.append("groupid", groupid);
     e.preventDefault();
 
-    // axios
-    //   .put("http://localhost:8081/api/students/presentation", formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //     alert("added");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    //   axios
+    //     .put("http://localhost:8081/api/students/proposal", formData)
+    //     .then((res) => {
+    //       console.log(res);
+    //       alert("added");
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
     try {
-      const response = submitPresantation(formData);
-
+      const response = submitProposal(formData);
+      alert("added");
       console.log(response);
       setFile([0]);
       var x = document.getElementById("snackbar");
@@ -42,7 +43,7 @@ export default function SubmitPresentation() {
         <br />
         <br />
         <center>
-          <h3>Submit Presentation</h3>
+          <h3>Submit Proposal</h3>
         </center>
       </div>
       <div
@@ -70,7 +71,7 @@ export default function SubmitPresentation() {
             <button type="submit" className="btn btn-warning">
               Add submission
             </button>
-            <div id="snackbar">Group Member added</div>
+            <div id="snackbar">Proposal Submited</div>
           </center>
         </form>
       </div>

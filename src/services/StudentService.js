@@ -17,4 +17,16 @@ export async function getSupervisor(data) {
 export function registerTopicCallery(data) {
   return ApiCaller.post(url + "/students/uploads", data);
 }
+export function submitProposal(data) {
+  return ApiCaller.put(url + "/students/proposal", data);
+}
+export function submitFinalThesis(data) {
+  return ApiCaller.put(url + "/students/thesis", data);
+}
+export function submitReport(data) {
+  return ApiCaller.put(url + "/students/report", data);
+}
+export function submitPresantation(data) {
+  return ApiCaller.put(url + "/students/report", data);
+}
 

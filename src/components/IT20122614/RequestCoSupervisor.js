@@ -59,6 +59,11 @@ export default function RequestSupervisor() {
     try {
       const value = requestTopicSepervisor(topicObj);
       console.log(value);
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function () {
+        x.className = x.className.replace("show", "");
+      }, 1000);
     } catch (err) {
       console.log(err);
     }
@@ -271,6 +276,9 @@ export default function RequestSupervisor() {
                       </tr>
                     </table>
                   </form>
+                  <center>
+                  <div id="snackbar">Co-supervisor Requested</div>
+                  </center>
                 </div>
               </div>
             </div>
