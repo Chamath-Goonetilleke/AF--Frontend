@@ -24,7 +24,11 @@ export default function InsertMark() {
 
     const mark = { ...form };
 
-    (await insertMarks(params.id1.toString(), mark)).data;
+    const response = (await insertMarks(params.id1.toString(), mark)).data;
+
+    if (response.msg === false) {
+      window.alert("Submitted marks cannot change again");
+    }
 
     navigate(-1);
   }

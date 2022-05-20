@@ -28,7 +28,6 @@ export async function getMarkingRubricks() {
 }
 
 export async function insertMarks(id, mark) {
-  console.log(mark);
   return await http.post(endPoint + `/insertmarks/${id}`, mark);
 }
 

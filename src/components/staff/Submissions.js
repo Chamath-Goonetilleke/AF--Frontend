@@ -1,23 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getSubmissions } from "../../services/staffServices";
 
-const DisplayLink = (props) => (
-  <tr>
-    <td>{props.record.field}</td>
-    <td>
-      <a
-        className="btn btn-primary"
-        href={`${props.record.file}`}
-        target={"_blank"}
-      >
-        Download
-      </a>
-    </td>
-  </tr>
-);
-
 export default function Submissions(props) {
-  const [submissions, setSubmissions] = useState([]);
+  const [submission, setSubmissions] = useState({});
 
   useEffect(() => {
     async function getRecords() {
@@ -27,19 +12,84 @@ export default function Submissions(props) {
     }
 
     getRecords();
-  }, [submissions.size]);
+  }, [props.id.toString()]);
 
-  function displayFiles() {
-    if (submissions.length === 0) {
+  function displayProposal() {
+    if (submission !== null && submission.proposal !== undefined) {
       return (
         <tr>
-          <td>Currently, you do not have any submissions</td>
+          <td>Propsal Document</td>
+          <td>
+            <a
+              className="btn btn-primary"
+              href={`${submission.proposal}`}
+              target={"_blank"}
+            >
+              Download
+            </a>
+          </td>
+        </tr>
+      );
+    } else {
+      return (
+        <tr>
+          <td>Proposal Document</td>
+          <td>Proposal Document still not submitted</td>
         </tr>
       );
     }
-    return submissions.map((record) => {
-      return <DisplayLink record={record} key={record._id} />;
-    });
+  }
+
+  function displayReport() {
+    if (submission !== null && submission.report !== undefined) {
+      return (
+        <tr>
+          <td>Report</td>
+          <td>
+            <a
+              className="btn btn-primary"
+              href={`${submission.report}`}
+              target={"_blank"}
+            >
+              Download
+            </a>
+          </td>
+        </tr>
+      );
+    } else {
+      return (
+        <tr>
+          <td>Report</td>
+          <td>Report still not submitted</td>
+        </tr>
+      );
+    }
+  }
+
+  function displayFinalThesis() {
+    if (submission !== null && submission.Finalthesis !== undefined) {
+      return (
+        <tr>
+          <td>Final Thesis</td>
+          <td>
+            <a
+              className="btn btn-primary"
+              href={`${submission.Finalthesis}`}
+              target={"_blank"}
+            >
+              Download
+            </a>
+          </td>
+        </tr>
+      );
+    } else {
+      return (
+        <tr>
+          <td>Final Thesis</td>
+          <td>Final Thesis still not submitted</td>
+        </tr>
+      );
+    }
   }
 
   return (
@@ -51,7 +101,11 @@ export default function Submissions(props) {
             <th></th>
           </tr>
         </thead>
-        <tbody>{displayFiles()}</tbody>
+        <tbody>
+          {displayProposal()}
+          {displayReport()}
+          {displayFinalThesis()}
+        </tbody>
       </table>
       <br />
     </div>
