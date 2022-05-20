@@ -3,11 +3,12 @@ import { useParams } from "react-router-dom";
 import Pusher from "pusher-js";
 import { getChats, sendMessage } from "../../services/chatServices";
 
-import "./ChatStyles.css";
+import "./NewChatStyles.css";
+// import "./ChatStyles.css";
 
 const OtherMessage = (props) => (
   <p className="chat__message">
-    <span className="chat__name">{props.record.SendBy}</span>
+    {/* <span className="chat__name">{props.record.SendBy}</span> */}
     {props.record.Message}
   </p>
 );
@@ -95,14 +96,19 @@ export default function Chat() {
             <input
               type="text"
               className="form-control"
-              placeholder="Type the message here"
+              placeholder="Type here"
               aria-label="Recipient's username"
               aria-describedby="button-addon2"
               value={form.Message}
               onChange={(e) => updateForm({ Message: e.target.value })}
+              style={{ fontSize: "18px" }}
             />
             <div>&nbsp;&nbsp;&nbsp;</div>
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              style={{ fontSize: "18px" }}
+            >
               Send
             </button>
           </div>
