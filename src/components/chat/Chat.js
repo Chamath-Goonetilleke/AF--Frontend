@@ -8,7 +8,7 @@ import "./NewChatStyles.css";
 
 const OtherMessage = (props) => (
   <p className="chat__message">
-    {/* <span className="chat__name">{props.record.SendBy}</span> */}
+    <span className="chat__name">{props.record.name}</span>
     {props.record.Message}
   </p>
 );

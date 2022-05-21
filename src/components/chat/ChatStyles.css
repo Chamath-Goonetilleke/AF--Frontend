@@ -43,6 +43,7 @@
 }
 
 .chat__name {
+  width: max-content;
   position: absolute;
   top: -15px;
   font-size: 12px;
