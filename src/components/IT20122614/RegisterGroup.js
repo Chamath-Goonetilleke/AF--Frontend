@@ -7,9 +7,11 @@ export default function RegisterGroup() {
   let [email, setEmail] = useState("");
   let [isLeader, setIsLeader] = useState(false);
   const [groupid, setGroups] = useState("");
+  const [errors, setErrors] = useState("");
   const [count, setCount] = useState(1);
+  var xerror = document.getElementById("snackbarError");
 
-  function sendGroupData(e) {
+  async function sendGroupData(e) {
     e.preventDefault();
 
     const groupData = {
@@ -23,19 +25,21 @@ export default function RegisterGroup() {
     console.log(groupData);
 
     try {
-      const value = studentCaller(groupData);
-      console.log(value);
+      const value = await studentCaller(groupData);
+      console.log(value.data.success);
+
       setCount(count + 1);
       setLeaderitnumber("");
       setLeadername("");
       setEmail("");
       setIsLeader(false);
+      xerror.style.display = "none";
+
       var x = document.getElementById("snackbar");
       x.className = "show";
       setTimeout(function () {
         x.className = x.className.replace("show", "");
       }, 1000);
-
       if (count === 4) {
         var btn = document.getElementById("formdisabled");
         btn.style.display = "none";
@@ -43,7 +47,11 @@ export default function RegisterGroup() {
         formTag.style.display = "block";
       }
     } catch (err) {
-      console.log(err);
+      console.log("error=================");
+      console.log(err.response.data.errors[0].msg);
+      setErrors(err.response.data.errors[0].msg);
+
+      xerror.style.display = "block";
     }
   }
 
@@ -79,7 +87,8 @@ export default function RegisterGroup() {
 
   return (
     <div>
-      <br/><br/>
+      <br />
+      <br />
       <div className="container cardBackgroudcolor">
         <div id="createDIV">
           <center>
@@ -171,6 +180,12 @@ export default function RegisterGroup() {
                 class="noselect btn1 defaultmargin"
               ></button>
               <div id="snackbar">Group Member added</div>
+              <div
+                id="snackbarError"
+                style={{ backgroundColor: "red", color: "white", "borderRadius": "20px" }}
+              >
+                {errors}
+              </div>
             </center>
           </form>
         </div>

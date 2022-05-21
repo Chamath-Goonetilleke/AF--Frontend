@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
-import axios from "axios";
+
 import {
   requestTopicSepervisor,
   getSupervisor,
@@ -45,7 +45,7 @@ export default function RequestSupervisor() {
     }
   }
 
-  function requestTopic(e) {
+  async function requestTopic(e) {
     e.preventDefault();
 
     const topicObj = {
@@ -57,19 +57,20 @@ export default function RequestSupervisor() {
     };
 
     try {
-      const value = requestTopicSepervisor(topicObj);
+      const value = await requestTopicSepervisor(topicObj);
       console.log(value);
       var x = document.getElementById("snackbar");
       x.className = "show";
       setTimeout(function () {
         x.className = x.className.replace("show", "");
       }, 1000);
+      setGoSteps(2);
     } catch (err) {
+      alert("Please enter more than 10 charactors in Message Area");
       console.log(err);
     }
 
-    console.log(topicObj);
-    setGoSteps(2);
+    
   }
 
   return (
@@ -165,7 +166,7 @@ export default function RequestSupervisor() {
                             onClick={() => (
                               setGoSteps(1),
                               setSelectSupervisorname(supervisor.name),
-                              setSelectSupervisorid(supervisor.id),
+                              setSelectSupervisorid(supervisor._id),
                               setSupervisorField(supervisor.researchField)
                             )}
                             type="submit"
@@ -277,7 +278,7 @@ export default function RequestSupervisor() {
                     </table>
                   </form>
                   <center>
-                  <div id="snackbar">Co-supervisor Requested</div>
+                    <div id="snackbar">Co-supervisor Requested</div>
                   </center>
                 </div>
               </div>

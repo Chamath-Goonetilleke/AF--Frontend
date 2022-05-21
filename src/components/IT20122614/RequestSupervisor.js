@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Stepper, Step } from "react-form-stepper";
-import axios from "axios";
+
 import {
   requestTopicSepervisor,
   getSupervisor,
@@ -17,6 +17,8 @@ export default function RequestSupervisor() {
   const [topic, setTopic] = useState("");
   const [message, setmessage] = useState("");
   const userRole = "Supervisor";
+
+  
 
   async function getData(e) {
     e.preventDefault();
@@ -42,10 +44,11 @@ export default function RequestSupervisor() {
       const response = await getSupervisor(sendData);
       console.log(response.data);
       setSupervisors(response.data);
+      
     }
   }
 
-  function requestTopic(e) {
+  async function requestTopic(e) {
     e.preventDefault();
 
     const topicObj = {
@@ -58,20 +61,23 @@ export default function RequestSupervisor() {
     // console.log(topicObj)
 
     try {
-      const value = requestTopicSepervisor(topicObj);
+      const value = await requestTopicSepervisor(topicObj);
       console.log(value);
-      alert("requested");
+      
       var x = document.getElementById("snackbar");
       x.className = "show";
       setTimeout(function () {
         x.className = x.className.replace("show", "");
       }, 1000);
+      
+      setGoSteps(2);
     } catch (err) {
-      alert(err);
+      alert("Please enter more than 10 charactors in Message Area");
       console.log(err);
+      
     }
 
-    setGoSteps(2);
+    
   }
 
   return (
@@ -86,7 +92,7 @@ export default function RequestSupervisor() {
         <div className="insideCard">
           {goSteps === 0 && (
             <center>
-              <h5>Select Supervisers</h5>
+              <h5>Select Supervisors</h5>
               <div>
                 <div className="container">
                   <form
@@ -196,7 +202,8 @@ export default function RequestSupervisor() {
             <center>
               <div>
                 <div>
-                  <h5>Request Superviser</h5>
+                  <h5>Request Supervisor</h5><br/>
+                  
                   <div className="container">
                     <form onSubmit={requestTopic} className="row">
                       <table width="90%">
@@ -248,6 +255,7 @@ export default function RequestSupervisor() {
                                 onChange={(e) => {
                                   setTopic(e.target.value);
                                 }}
+                                required
                               />
                             </div>
                           </td>
@@ -278,6 +286,7 @@ export default function RequestSupervisor() {
                           </td>
                         </tr>
                       </table>
+                      
                     </form>
                   </div>
                 </div>
