@@ -114,7 +114,7 @@ export default class SaveMarks extends Component {
       className='form-control'
       name='marks'
       placeholder='Enter Marks'
-      defaultValue={this.state.totalmarks}
+      value={this.state.totalmarks}
       onChange={this.handleInputChange}/>
     </div>
       <br/>

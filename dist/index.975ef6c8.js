@@ -39101,7 +39101,7 @@ class SaveMarks extends _react.Component {
                                     className: "form-control",
                                     name: "marks",
                                     placeholder: "Enter Marks",
-                                    defaultValue: this.state.totalmarks,
+                                    value: this.state.totalmarks,
                                     onChange: this.handleInputChange
                                 }, void 0, false, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
