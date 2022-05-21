@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-
+import {getTopic, updateTopic} from "../../services/panelService"
 export default class TopicEdit extends Component {
 
   constructor(props){
@@ -39,7 +39,7 @@ export default class TopicEdit extends Component {
 
     console.log(data)
 
-    axios.put(`http://localhost:8000/topic/update/${id}`, data).then((res) =>{
+    updateTopic(id, data).then((res) =>{
       if(res.data.success){
         alert("Topic Updated")
         this.setState(
@@ -60,7 +60,7 @@ export default class TopicEdit extends Component {
 
     const id = this.props.match.params.id;
   
-    await axios.get(`http://localhost:8000/topic/${id}`).then((res) => {
+    await getTopic(id).then((res) => {
       if(res.data.success) {
         this.setState({
           topic:res.data.topic,

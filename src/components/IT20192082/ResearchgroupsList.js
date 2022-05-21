@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {researchgroups} from "../../services/panelService" 
 
 export default class ResearchgroupsList extends Component {
 constructor(props){
@@ -15,7 +16,7 @@ componentDidMount(){
 }
 
 async retrieveResearchgroups(){
-  await axios.get("http://localhost:8000/researchgroups").then(res =>{
+  await researchgroups().then(res =>{
 
     console.log(res.data);
     if(res.data.success){
@@ -38,7 +39,7 @@ async retrieveResearchgroups(){
 handleSearchArea = (e) => {
   const searchKey = e.currentTarget.value;
 
-  axios.get("http://localhost:8000/researchgroups").then(res =>{
+  researchgroups().then(res =>{
 
     if(res.data.success){
         this.filterData(res.data.existingResearchgroups,searchKey)

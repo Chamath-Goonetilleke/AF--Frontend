@@ -33,6 +33,13 @@ export default class Report extends Component{
     }
 
     render() {
-        return(<button onClick={this.jsPdfGenerator}>Generate Report</button>)
+        return(
+        <div>
+        <button className='btn btn-success' type="submit" style={{marginBottom: '15px'}} onClick={this.jsPdfGenerator}>
+         <i className='far fa-check-square'></i>&nbsp; Generate Report
+        </button>
+            
+        </div>
+        )
     }
 }

@@ -28324,6 +28324,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _panelService = require("../../services/panelService");
 class TopicList extends _react.Component {
     constructor(props){
         super(props);
@@ -28334,8 +28335,8 @@ class TopicList extends _react.Component {
     componentDidMount() {
         this.retrieveTopics();
     }
-    retrieveTopics() {
-        _axiosDefault.default.get("http://localhost:8000/topics").then((res)=>{
+    async retrieveTopics() {
+        await _panelService.topics().then((res)=>{
             console.log(res.data);
             if (res.data.success) {
                 this.setState({
@@ -28343,6 +28344,8 @@ class TopicList extends _react.Component {
                 });
                 console.log(this.state.topics);
             }
+        }).catch((err)=>{
+            console.log(err);
         });
     }
     render() {
@@ -28353,7 +28356,7 @@ class TopicList extends _react.Component {
                     children: "All Topics"
                 }, void 0, false, {
                     fileName: "src/components/IT20192082/TopicList.js",
-                    lineNumber: 33,
+                    lineNumber: 39,
                     columnNumber: 5
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("table", {
@@ -28367,7 +28370,7 @@ class TopicList extends _react.Component {
                                         children: "#"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/TopicList.js",
-                                        lineNumber: 37,
+                                        lineNumber: 43,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -28375,7 +28378,7 @@ class TopicList extends _react.Component {
                                         children: "Topic"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/TopicList.js",
-                                        lineNumber: 38,
+                                        lineNumber: 44,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -28383,7 +28386,7 @@ class TopicList extends _react.Component {
                                         children: "GroupID"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/TopicList.js",
-                                        lineNumber: 39,
+                                        lineNumber: 45,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -28391,18 +28394,18 @@ class TopicList extends _react.Component {
                                         children: "Field"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/TopicList.js",
-                                        lineNumber: 40,
+                                        lineNumber: 46,
                                         columnNumber: 11
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/IT20192082/TopicList.js",
-                                lineNumber: 36,
+                                lineNumber: 42,
                                 columnNumber: 9
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/TopicList.js",
-                            lineNumber: 35,
+                            lineNumber: 41,
                             columnNumber: 7
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tbody", {
@@ -28413,7 +28416,7 @@ class TopicList extends _react.Component {
                                             children: index + 1
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/TopicList.js",
-                                            lineNumber: 46,
+                                            lineNumber: 52,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
@@ -28425,50 +28428,50 @@ class TopicList extends _react.Component {
                                                 children: topics.topic
                                             }, void 0, false, {
                                                 fileName: "src/components/IT20192082/TopicList.js",
-                                                lineNumber: 48,
+                                                lineNumber: 54,
                                                 columnNumber: 11
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/TopicList.js",
-                                            lineNumber: 47,
+                                            lineNumber: 53,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
                                             children: topics.groupid
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/TopicList.js",
-                                            lineNumber: 52,
+                                            lineNumber: 58,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
                                             children: topics.field
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/TopicList.js",
-                                            lineNumber: 53,
+                                            lineNumber: 59,
                                             columnNumber: 11
                                         }, this)
                                     ]
                                 }, index, true, {
                                     fileName: "src/components/IT20192082/TopicList.js",
-                                    lineNumber: 45,
+                                    lineNumber: 51,
                                     columnNumber: 9
                                 }, this)
                             )
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/TopicList.js",
-                            lineNumber: 43,
+                            lineNumber: 49,
                             columnNumber: 7
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/IT20192082/TopicList.js",
-                    lineNumber: 34,
+                    lineNumber: 40,
                     columnNumber: 5
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/IT20192082/TopicList.js",
-            lineNumber: 32,
+            lineNumber: 38,
             columnNumber: 5
         }, this);
     }
@@ -28480,7 +28483,7 @@ exports.default = TopicList;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../services/panelService":"3rjo6"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -31955,7 +31958,68 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}],"acAMf":[function(require,module,exports) {
+},{"react-refresh/runtime":"786KC"}],"3rjo6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "topics", ()=>topics
+);
+parcelHelpers.export(exports, "getTopic", ()=>getTopic
+);
+parcelHelpers.export(exports, "updateTopic", ()=>updateTopic
+);
+parcelHelpers.export(exports, "researchgroups", ()=>researchgroups
+);
+parcelHelpers.export(exports, "getResearchGroup", ()=>getResearchGroup
+);
+parcelHelpers.export(exports, "criteriass", ()=>criteriass
+);
+parcelHelpers.export(exports, "saveCriterias", ()=>saveCriterias
+);
+var _configJson = require("../config.json");
+var _configJsonDefault = parcelHelpers.interopDefault(_configJson);
+var _httpService = require("./httpService");
+var _httpServiceDefault = parcelHelpers.interopDefault(_httpService);
+const url = _configJsonDefault.default.API;
+async function topics() {
+    return await _httpServiceDefault.default.get(url + "/topics");
+}
+async function getTopic(id) {
+    return await _httpServiceDefault.default.get(url + `/topic/${id}`);
+}
+async function updateTopic(id, data) {
+    return await _httpServiceDefault.default.put(url + `/topics/update/${id}`, data);
+}
+async function researchgroups() {
+    return await _httpServiceDefault.default.get(url + `/researchgroups`);
+}
+async function getResearchGroup(id) {
+    return await _httpServiceDefault.default.get(url + `/researchgroup/${id}`);
+}
+async function criteriass() {
+    return await _httpServiceDefault.default.get(url + `/criterias`);
+}
+async function saveCriterias() {
+    return await _httpServiceDefault.default.post(url + `/criterias/save`);
+}
+
+},{"../config.json":"8VeYg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./httpService":"7YuWK"}],"8VeYg":[function(require,module,exports) {
+module.exports = JSON.parse("{\"API\":\"http://localhost:8000\"}");
+
+},{}],"7YuWK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+const http = {
+    get: _axiosDefault.default.get,
+    post: _axiosDefault.default.post,
+    put: _axiosDefault.default.put,
+    patch: _axiosDefault.default.patch,
+    delete: _axiosDefault.default.delete
+};
+exports.default = http;
+
+},{"axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"acAMf":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$130b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -31969,6 +32033,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _panelService = require("../../services/panelService");
 class TopicEdit extends _react.Component {
     constructor(props){
         super(props);
@@ -31999,7 +32064,7 @@ class TopicEdit extends _react.Component {
             field: field
         };
         console.log(data);
-        _axiosDefault.default.put(`http://localhost:8000/topic/update/${id}`, data).then((res)=>{
+        _panelService.updateTopic(id, data).then((res)=>{
             if (res.data.success) {
                 alert("Topic Updated");
                 this.setState({
@@ -32014,7 +32079,7 @@ class TopicEdit extends _react.Component {
     };
     async componentDidMount() {
         const id = this.props.match.params.id;
-        await _axiosDefault.default.get(`http://localhost:8000/topic/${id}`).then((res)=>{
+        await _panelService.getTopic(id).then((res)=>{
             if (res.data.success) {
                 this.setState({
                     topic: res.data.topic,
@@ -32257,7 +32322,7 @@ exports.default = TopicEdit;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3ng2A":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../services/panelService":"3rjo6"}],"3ng2A":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$c323 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38149,6 +38214,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _panelService = require("../../services/panelService");
 class TopicDetails extends _react.Component {
     constructor(props){
         super(props);
@@ -38156,9 +38222,9 @@ class TopicDetails extends _react.Component {
             topic: {}
         };
     }
-    componentDidMount() {
+    async componentDidMount() {
         const id = this.props.match.params.id;
-        _axiosDefault.default.get(`http://localhost:8000/topic/${id}`).then((res)=>{
+        await _panelService.getTopic(id).then((res)=>{
             if (res.data.success) {
                 this.setState({
                     topic: res.data.topic
@@ -38181,17 +38247,17 @@ class TopicDetails extends _react.Component {
                                 children: topic
                             }, void 0, false, {
                                 fileName: "src/components/IT20192082/TopicDetails.js",
-                                lineNumber: 38,
+                                lineNumber: 39,
                                 columnNumber: 48
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/TopicDetails.js",
-                            lineNumber: 38,
+                            lineNumber: 39,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                             fileName: "src/components/IT20192082/TopicDetails.js",
-                            lineNumber: 39,
+                            lineNumber: 40,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
@@ -38202,7 +38268,7 @@ class TopicDetails extends _react.Component {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/TopicDetails.js",
-                            lineNumber: 40,
+                            lineNumber: 41,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
@@ -38213,7 +38279,7 @@ class TopicDetails extends _react.Component {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/TopicDetails.js",
-                            lineNumber: 41,
+                            lineNumber: 42,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
@@ -38224,7 +38290,7 @@ class TopicDetails extends _react.Component {
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/TopicDetails.js",
-                            lineNumber: 42,
+                            lineNumber: 43,
                             columnNumber: 9
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("li", {
@@ -38239,29 +38305,29 @@ class TopicDetails extends _react.Component {
                                         children: "Download"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/TopicDetails.js",
-                                        lineNumber: 44,
+                                        lineNumber: 45,
                                         columnNumber: 9
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/IT20192082/TopicDetails.js",
-                                    lineNumber: 43,
+                                    lineNumber: 44,
                                     columnNumber: 57
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/TopicDetails.js",
-                            lineNumber: 43,
+                            lineNumber: 44,
                             columnNumber: 9
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/IT20192082/TopicDetails.js",
-                    lineNumber: 37,
+                    lineNumber: 38,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                     fileName: "src/components/IT20192082/TopicDetails.js",
-                    lineNumber: 47,
+                    lineNumber: 48,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("a", {
@@ -38272,18 +38338,18 @@ class TopicDetails extends _react.Component {
                         children: "Evaluate"
                     }, void 0, false, {
                         fileName: "src/components/IT20192082/TopicDetails.js",
-                        lineNumber: 49,
+                        lineNumber: 50,
                         columnNumber: 9
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/IT20192082/TopicDetails.js",
-                    lineNumber: 48,
+                    lineNumber: 49,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/IT20192082/TopicDetails.js",
-            lineNumber: 36,
+            lineNumber: 37,
             columnNumber: 9
         }, this);
     }
@@ -38295,7 +38361,7 @@ exports.default = TopicDetails;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jSeZR":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../services/panelService":"3rjo6"}],"jSeZR":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$b05a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38309,6 +38375,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _panelService = require("../../services/panelService");
 class ResearchgroupsList extends _react.Component {
     constructor(props){
         super(props);
@@ -38320,7 +38387,7 @@ class ResearchgroupsList extends _react.Component {
         this.retrieveResearchgroups();
     }
     async retrieveResearchgroups() {
-        await _axiosDefault.default.get("http://localhost:8000/researchgroups").then((res)=>{
+        await _panelService.researchgroups().then((res)=>{
             console.log(res.data);
             if (res.data.success) {
                 this.setState({
@@ -38339,7 +38406,7 @@ class ResearchgroupsList extends _react.Component {
     }
     handleSearchArea = (e)=>{
         const searchKey = e.currentTarget.value;
-        _axiosDefault.default.get("http://localhost:8000/researchgroups").then((res)=>{
+        _panelService.researchgroups().then((res)=>{
             if (res.data.success) this.filterData(res.data.existingResearchgroups, searchKey);
         });
     };
@@ -38356,12 +38423,12 @@ class ResearchgroupsList extends _react.Component {
                                 children: "All Researchgroups"
                             }, void 0, false, {
                                 fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                lineNumber: 57,
+                                lineNumber: 58,
                                 columnNumber: 9
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                            lineNumber: 56,
+                            lineNumber: 57,
                             columnNumber: 7
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -38374,18 +38441,18 @@ class ResearchgroupsList extends _react.Component {
                                 onChange: this.handleSearchArea
                             }, void 0, false, {
                                 fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                lineNumber: 60,
+                                lineNumber: 61,
                                 columnNumber: 9
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                            lineNumber: 59,
+                            lineNumber: 60,
                             columnNumber: 7
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                    lineNumber: 55,
+                    lineNumber: 56,
                     columnNumber: 5
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("table", {
@@ -38399,7 +38466,7 @@ class ResearchgroupsList extends _react.Component {
                                         children: "#"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                        lineNumber: 73,
+                                        lineNumber: 74,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -38407,7 +38474,7 @@ class ResearchgroupsList extends _react.Component {
                                         children: "GroupID"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                        lineNumber: 74,
+                                        lineNumber: 75,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -38415,7 +38482,7 @@ class ResearchgroupsList extends _react.Component {
                                         children: "Panelmember"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                        lineNumber: 75,
+                                        lineNumber: 76,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -38423,7 +38490,7 @@ class ResearchgroupsList extends _react.Component {
                                         children: "cosupercisorid"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                        lineNumber: 76,
+                                        lineNumber: 77,
                                         columnNumber: 11
                                     }, this),
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -38431,18 +38498,18 @@ class ResearchgroupsList extends _react.Component {
                                         children: "SupercisorID"
                                     }, void 0, false, {
                                         fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                        lineNumber: 77,
+                                        lineNumber: 78,
                                         columnNumber: 11
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                lineNumber: 72,
+                                lineNumber: 73,
                                 columnNumber: 9
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                            lineNumber: 71,
+                            lineNumber: 72,
                             columnNumber: 7
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tbody", {
@@ -38453,7 +38520,7 @@ class ResearchgroupsList extends _react.Component {
                                             children: index + 1
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                            lineNumber: 86,
+                                            lineNumber: 87,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
@@ -38465,57 +38532,57 @@ class ResearchgroupsList extends _react.Component {
                                                 children: researchgroups.groupid
                                             }, void 0, false, {
                                                 fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                                lineNumber: 88,
+                                                lineNumber: 89,
                                                 columnNumber: 11
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                            lineNumber: 87,
+                                            lineNumber: 88,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
                                             children: researchgroups.panelmember
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                            lineNumber: 93,
+                                            lineNumber: 94,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
                                             children: researchgroups.cosupercisorid
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                            lineNumber: 94,
+                                            lineNumber: 95,
                                             columnNumber: 11
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
                                             children: researchgroups.supercisorid
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                            lineNumber: 95,
+                                            lineNumber: 96,
                                             columnNumber: 11
                                         }, this)
                                     ]
                                 }, index, true, {
                                     fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                                    lineNumber: 85,
+                                    lineNumber: 86,
                                     columnNumber: 9
                                 }, this)
                             )
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                            lineNumber: 83,
+                            lineNumber: 84,
                             columnNumber: 7
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/IT20192082/ResearchgroupsList.js",
-                    lineNumber: 70,
+                    lineNumber: 71,
                     columnNumber: 5
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/IT20192082/ResearchgroupsList.js",
-            lineNumber: 54,
+            lineNumber: 55,
             columnNumber: 5
         }, this);
     }
@@ -38527,7 +38594,7 @@ exports.default = ResearchgroupsList;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1Aycs":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../services/panelService":"3rjo6"}],"1Aycs":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8067 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38541,6 +38608,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _panelService = require("../../services/panelService");
 class PresentationList extends _react.Component {
     constructor(props){
         super(props);
@@ -38550,7 +38618,7 @@ class PresentationList extends _react.Component {
     }
     componentDidMount() {
         const id = this.props.match.params.id;
-        _axiosDefault.default.get(`http://localhost:8000/researchgroup/${id}`).then((res)=>{
+        _panelService.getResearchGroup(id).then((res)=>{
             if (res.data.success) {
                 this.setState({
                     researchgroup: res.data.researchgroup
@@ -38665,7 +38733,7 @@ exports.default = PresentationList;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"fc0qE":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../services/panelService":"3rjo6"}],"fc0qE":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4aec = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38679,6 +38747,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _panelService = require("../../services/panelService");
 class Marks extends _react.Component {
     constructor(props){
         super(props);
@@ -38690,7 +38759,7 @@ class Marks extends _react.Component {
         this.retrieveCriterias();
     }
     retrieveCriterias() {
-        _axiosDefault.default.get("http://localhost:8000/criterias").then((res)=>{
+        _panelService.criteriass().then((res)=>{
             console.log(res.data);
             if (res.data.success) {
                 this.setState({
@@ -38711,7 +38780,7 @@ class Marks extends _react.Component {
                             children: "Marks Criteria"
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/Marks.js",
-                            lineNumber: 38,
+                            lineNumber: 39,
                             columnNumber: 7
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("table", {
@@ -38725,7 +38794,7 @@ class Marks extends _react.Component {
                                                 children: "#"
                                             }, void 0, false, {
                                                 fileName: "src/components/IT20192082/Marks.js",
-                                                lineNumber: 42,
+                                                lineNumber: 43,
                                                 columnNumber: 13
                                             }, this),
                                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -38733,7 +38802,7 @@ class Marks extends _react.Component {
                                                 children: "Name"
                                             }, void 0, false, {
                                                 fileName: "src/components/IT20192082/Marks.js",
-                                                lineNumber: 43,
+                                                lineNumber: 44,
                                                 columnNumber: 13
                                             }, this),
                                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("th", {
@@ -38741,18 +38810,18 @@ class Marks extends _react.Component {
                                                 children: "Value"
                                             }, void 0, false, {
                                                 fileName: "src/components/IT20192082/Marks.js",
-                                                lineNumber: 44,
+                                                lineNumber: 45,
                                                 columnNumber: 13
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "src/components/IT20192082/Marks.js",
-                                        lineNumber: 41,
+                                        lineNumber: 42,
                                         columnNumber: 11
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/IT20192082/Marks.js",
-                                    lineNumber: 40,
+                                    lineNumber: 41,
                                     columnNumber: 9
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("tbody", {
@@ -38764,7 +38833,7 @@ class Marks extends _react.Component {
                                                         children: index + 1
                                                     }, void 0, false, {
                                                         fileName: "src/components/IT20192082/Marks.js",
-                                                        lineNumber: 50,
+                                                        lineNumber: 51,
                                                         columnNumber: 13
                                                     }, this),
                                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
@@ -38776,54 +38845,54 @@ class Marks extends _react.Component {
                                                             children: criterias.name
                                                         }, void 0, false, {
                                                             fileName: "src/components/IT20192082/Marks.js",
-                                                            lineNumber: 52,
+                                                            lineNumber: 53,
                                                             columnNumber: 13
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "src/components/IT20192082/Marks.js",
-                                                        lineNumber: 51,
+                                                        lineNumber: 52,
                                                         columnNumber: 13
                                                     }, this),
                                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("td", {
                                                         children: criterias.value
                                                     }, void 0, false, {
                                                         fileName: "src/components/IT20192082/Marks.js",
-                                                        lineNumber: 56,
+                                                        lineNumber: 57,
                                                         columnNumber: 13
                                                     }, this)
                                                 ]
                                             }, index, true, {
                                                 fileName: "src/components/IT20192082/Marks.js",
-                                                lineNumber: 49,
+                                                lineNumber: 50,
                                                 columnNumber: 11
                                             }, this)
                                         ),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                             fileName: "src/components/IT20192082/Marks.js",
-                                            lineNumber: 59,
+                                            lineNumber: 60,
                                             columnNumber: 9
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                             fileName: "src/components/IT20192082/Marks.js",
-                                            lineNumber: 60,
+                                            lineNumber: 61,
                                             columnNumber: 9
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/IT20192082/Marks.js",
-                                    lineNumber: 47,
+                                    lineNumber: 48,
                                     columnNumber: 9
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/Marks.js",
-                            lineNumber: 39,
+                            lineNumber: 40,
                             columnNumber: 7
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/IT20192082/Marks.js",
-                    lineNumber: 37,
+                    lineNumber: 38,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -38835,23 +38904,23 @@ class Marks extends _react.Component {
                             children: "Assign Full Marks for Group"
                         }, void 0, false, {
                             fileName: "src/components/IT20192082/Marks.js",
-                            lineNumber: 67,
+                            lineNumber: 68,
                             columnNumber: 9
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/IT20192082/Marks.js",
-                        lineNumber: 66,
+                        lineNumber: 67,
                         columnNumber: 7
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/IT20192082/Marks.js",
-                    lineNumber: 65,
+                    lineNumber: 66,
                     columnNumber: 7
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/IT20192082/Marks.js",
-            lineNumber: 36,
+            lineNumber: 37,
             columnNumber: 9
         }, this);
     }
@@ -38863,7 +38932,7 @@ exports.default = Marks;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"dvrCJ":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../services/panelService":"3rjo6"}],"dvrCJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$be4e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38877,6 +38946,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _panelService = require("../../services/panelService");
 class SaveMarks extends _react.Component {
     constructor(props){
         super(props);
@@ -38897,7 +38967,7 @@ class SaveMarks extends _react.Component {
     };
     async componentDidMount() {
         const id = this.props.match.params.id;
-        await _axiosDefault.default.get(`http://localhost:8000/researchgroup/${id}`).then((res)=>{
+        await _panelService.getResearchGroup(id).then((res)=>{
             if (res.data.success) {
                 this.setState({
                     researchgroup: res.data.researchgroup,
@@ -38918,7 +38988,7 @@ class SaveMarks extends _react.Component {
             totalmarks: totalmarks
         };
         console.log(data);
-        _axiosDefault.default.post("http://localhost:8000/criterias/save", data).then((res)=>{
+        _panelService.saveCriterias().then((res)=>{
             if (res.data.success) {
                 alert("Marks Added");
                 this.setState({
@@ -38936,7 +39006,7 @@ class SaveMarks extends _react.Component {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                     fileName: "src/components/IT20192082/SaveMarks.js",
-                    lineNumber: 82,
+                    lineNumber: 83,
                     columnNumber: 7
                 }, this),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("form", {
@@ -38952,17 +39022,17 @@ class SaveMarks extends _react.Component {
                                             children: "Group ID"
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
-                                            lineNumber: 86,
-                                            columnNumber: 7
-                                        }, this),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
-                                            fileName: "src/components/IT20192082/SaveMarks.js",
                                             lineNumber: 87,
                                             columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
                                             lineNumber: 88,
+                                            columnNumber: 7
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
+                                            fileName: "src/components/IT20192082/SaveMarks.js",
+                                            lineNumber: 89,
                                             columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
@@ -38974,18 +39044,18 @@ class SaveMarks extends _react.Component {
                                             onChange: this.handleInputChange
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
-                                            lineNumber: 89,
+                                            lineNumber: 90,
                                             columnNumber: 7
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 85,
+                                    lineNumber: 86,
                                     columnNumber: 9
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 92,
+                                    lineNumber: 93,
                                     columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -38996,17 +39066,17 @@ class SaveMarks extends _react.Component {
                                             children: "Panel Member ID"
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
-                                            lineNumber: 94,
-                                            columnNumber: 7
-                                        }, this),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
-                                            fileName: "src/components/IT20192082/SaveMarks.js",
                                             lineNumber: 95,
                                             columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
                                             lineNumber: 96,
+                                            columnNumber: 7
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
+                                            fileName: "src/components/IT20192082/SaveMarks.js",
+                                            lineNumber: 97,
                                             columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
@@ -39018,18 +39088,18 @@ class SaveMarks extends _react.Component {
                                             onChange: this.handleInputChange
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
-                                            lineNumber: 97,
+                                            lineNumber: 98,
                                             columnNumber: 7
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 93,
+                                    lineNumber: 94,
                                     columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 100,
+                                    lineNumber: 101,
                                     columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -39040,17 +39110,17 @@ class SaveMarks extends _react.Component {
                                             children: "Marking Name"
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
-                                            lineNumber: 102,
-                                            columnNumber: 7
-                                        }, this),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
-                                            fileName: "src/components/IT20192082/SaveMarks.js",
                                             lineNumber: 103,
                                             columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
                                             lineNumber: 104,
+                                            columnNumber: 7
+                                        }, this),
+                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
+                                            fileName: "src/components/IT20192082/SaveMarks.js",
+                                            lineNumber: 105,
                                             columnNumber: 7
                                         }, this),
                                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
@@ -39062,24 +39132,24 @@ class SaveMarks extends _react.Component {
                                             onChange: this.handleInputChange
                                         }, void 0, false, {
                                             fileName: "src/components/IT20192082/SaveMarks.js",
-                                            lineNumber: 105,
+                                            lineNumber: 106,
                                             columnNumber: 7
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 101,
+                                    lineNumber: 102,
                                     columnNumber: 5
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 108,
+                                    lineNumber: 109,
                                     columnNumber: 5
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/SaveMarks.js",
-                            lineNumber: 84,
+                            lineNumber: 85,
                             columnNumber: 7
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
@@ -39093,7 +39163,7 @@ class SaveMarks extends _react.Component {
                                     children: "Enter the Marks"
                                 }, void 0, false, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 112,
+                                    lineNumber: 113,
                                     columnNumber: 7
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("input", {
@@ -39105,18 +39175,18 @@ class SaveMarks extends _react.Component {
                                     onChange: this.handleInputChange
                                 }, void 0, false, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 113,
+                                    lineNumber: 114,
                                     columnNumber: 7
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/SaveMarks.js",
-                            lineNumber: 111,
+                            lineNumber: 112,
                             columnNumber: 5
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("br", {}, void 0, false, {
                             fileName: "src/components/IT20192082/SaveMarks.js",
-                            lineNumber: 120,
+                            lineNumber: 121,
                             columnNumber: 7
                         }, this),
                         /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
@@ -39131,26 +39201,26 @@ class SaveMarks extends _react.Component {
                                     className: "far fa-check-square"
                                 }, void 0, false, {
                                     fileName: "src/components/IT20192082/SaveMarks.js",
-                                    lineNumber: 123,
+                                    lineNumber: 124,
                                     columnNumber: 7
                                 }, this),
                                 "\xa0Save Marks"
                             ]
                         }, void 0, true, {
                             fileName: "src/components/IT20192082/SaveMarks.js",
-                            lineNumber: 122,
+                            lineNumber: 123,
                             columnNumber: 5
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/IT20192082/SaveMarks.js",
-                    lineNumber: 83,
+                    lineNumber: 84,
                     columnNumber: 7
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/IT20192082/SaveMarks.js",
-            lineNumber: 81,
+            lineNumber: 82,
             columnNumber: 7
         }, this);
     }
@@ -39162,7 +39232,7 @@ exports.default = SaveMarks;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5n3Dz":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../services/panelService":"3rjo6"}],"5n3Dz":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$eeba = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -39196,13 +39266,33 @@ class Report extends _react.Component {
         doc.save("generate.pdf");
     };
     render() {
-        return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
-            onClick: this.jsPdfGenerator,
-            children: "Generate Report"
+        return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("button", {
+                className: "btn btn-success",
+                type: "submit",
+                style: {
+                    marginBottom: '15px'
+                },
+                onClick: this.jsPdfGenerator,
+                children: [
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV("i", {
+                        className: "far fa-check-square"
+                    }, void 0, false, {
+                        fileName: "src/components/IT20192082/Report.js",
+                        lineNumber: 39,
+                        columnNumber: 10
+                    }, this),
+                    "\xa0 Generate Report"
+                ]
+            }, void 0, true, {
+                fileName: "src/components/IT20192082/Report.js",
+                lineNumber: 38,
+                columnNumber: 9
+            }, this)
         }, void 0, false, {
             fileName: "src/components/IT20192082/Report.js",
-            lineNumber: 36,
-            columnNumber: 16
+            lineNumber: 37,
+            columnNumber: 9
         }, this);
     }
 }

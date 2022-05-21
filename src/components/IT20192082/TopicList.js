@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {topics} from "../../services/panelService"
 
 export default class TopicList extends Component {
 constructor(props){
@@ -14,8 +15,8 @@ componentDidMount(){
   this.retrieveTopics();
 }
 
-retrieveTopics(){
-  axios.get("http://localhost:8000/topics").then(res =>{
+async retrieveTopics(){
+  await topics().then(res =>{
 
     console.log(res.data);
     if(res.data.success){
@@ -26,6 +27,11 @@ retrieveTopics(){
       console.log(this.state.topics)
     }
   })
+  .catch((err)=>{
+    console.log(err);
+  })
+
+  
 }
   render() {
     return (

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {getResearchGroup, saveCriterias} from "../../services/panelService"
 
 export default class SaveMarks extends Component {
 
@@ -28,7 +29,7 @@ export default class SaveMarks extends Component {
 
     const id = this.props.match.params.id;
   
-    await axios.get(`http://localhost:8000/researchgroup/${id}`).then((res) => {
+    await getResearchGroup(id).then((res) => {
       if(res.data.success) {
         this.setState({
         researchgroup:res.data.researchgroup,
@@ -56,7 +57,7 @@ export default class SaveMarks extends Component {
 
     console.log(data)
 
-    axios.post("http://localhost:8000/criterias/save",data).then((res) =>{
+    saveCriterias().then((res) =>{
       
       if(res.data.success){
         alert("Marks Added")

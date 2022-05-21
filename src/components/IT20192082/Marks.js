@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {criteriass} from "../../services/panelService" 
 
 export default class Marks extends Component {
 
@@ -16,7 +17,7 @@ export default class Marks extends Component {
   }
   
   retrieveCriterias(){
-    axios.get("http://localhost:8000/criterias").then(res =>{
+    criteriass().then(res =>{
   
       console.log(res.data);
       if(res.data.success){

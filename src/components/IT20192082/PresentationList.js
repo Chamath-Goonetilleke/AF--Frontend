@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import {getResearchGroup} from "../../services/panelService" 
 
 export default class PresentationList extends Component {
   
@@ -16,7 +16,7 @@ export default class PresentationList extends Component {
 
     const id = this.props.match.params.id;
 
-    axios.get(`http://localhost:8000/researchgroup/${id}`).then((res) => {
+    getResearchGroup(id).then((res) => {
       if(res.data.success) {
         this.setState({
             researchgroup:res.data.researchgroup

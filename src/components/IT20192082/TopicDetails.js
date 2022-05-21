@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {getTopic} from "../../services/panelService"
 
 
 export default class TopicDetails extends Component {
@@ -12,11 +13,11 @@ export default class TopicDetails extends Component {
     };
   }
 
-  componentDidMount(){
+  async componentDidMount(){
 
     const id = this.props.match.params.id;
 
-    axios.get(`http://localhost:8000/topic/${id}`).then((res) => {
+    await getTopic(id).then((res) => {
       if(res.data.success) {
         this.setState({
           topic:res.data.topic
