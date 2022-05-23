@@ -1,0 +1,230 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* IT20122614 */
+.cardBackgroudcolor {
+  background-color: rgb(246, 246, 245);
+  border-radius: 20px;
+  box-shadow: 0 16px 16px 0 rgba(12, 26, 218, 0.2);
+  padding: 10px;
+  padding-left: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  transition: 0.3s;
+}
+.primarycolor {
+  color: #737374;
+}
+.primaryfontfamily {
+  font-family: Optima, sans-serif;
+}
+/* Group Register page */
+.formpadding {
+  margin-right: 100px;
+}
+.submitbtn {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+/* submit btn */
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn1 {
+  width: 150px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #af05c2;
+  background-image: linear-gradient(315deg, #cd09e2 0%, #18d8d8 74%);
+  background-size: 200% 100%;
+  background-position: left;
+  background-repeat: no-repeat;
+  transition: 500ms;
+}
+
+.btn1:before {
+  content: "Submit";
+  color: rgb(174, 235, 235);
+  font-size: 16px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 40px;
+  background-color: #0f90a3;
+  background-image: linear-gradient(315deg, #0c5c19 0%, #067474 74%);
+  transition: 500ms;
+}
+
+.btn1:hover {
+  background-position: right;
+}
+
+.btn1:hover:before {
+  color: white;
+}
+
+.btn1:focus {
+  outline: none;
+}
+
+/* end of submit btn */
+.defaultmargin {
+  margin: 20px;
+}
+/* stepper */
+.stepperstylings {
+  border-radius: 30px;
+  background-color: #0f90a3;
+}
+.insideCard {
+  background-color: antiquewhite;
+  padding: 20px;
+}
+.selectWidth {
+  width: 400px;
+}
+/* =========================================== */
+#myDIV {
+  display: none;
+}
+#gadded {
+  display: none;
+}
+/* ============================================== */
+#snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  margin-left: -125px;
+  background-color: rgb(33, 176, 8);
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 10px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 30px;
+  font-size: 17px;
+  border-radius: 60px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 4.5s;
+  animation: fadein 0.5s, fadeout 0.5s 4.5s;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+/* ============================================== */
+.setingmargin {
+  margin-top: 20px;
+}
+
+/* profile */
+.divTag {
+  background-color: #efb262;
+  padding: 10px;
+  padding-left: 20px;
+  color: white;
+  box-shadow: 0 16px 16px 0 rgba(12, 26, 218, 0.2);
+  border-radius: 10px;
+}
+/* btn style profile */
+.btnProfile {
+  color: rgb(9, 210, 69);
+}
+.profilerequestBtn {
+  border-style: none;
+  color: white;
+  
+}
