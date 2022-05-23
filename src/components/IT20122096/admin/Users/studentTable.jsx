@@ -13,6 +13,7 @@ import StudentUpdate from "./studentUpdateModal";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
+import Loading from "../../common/loading";
 
 class StudentTable extends Component {
   state = {
@@ -96,80 +97,82 @@ class StudentTable extends Component {
               <th scope="col">Student Email</th>
             </tr>
           </thead>
-          <tbody>
-            {this.getPageData().map((group) => (
-              <tr key={group._id}>
-                <th scope="row">{group.groupid}</th>
-                <td>
-                  {this.state.groupMembers
-                    .filter((m) => m.groupid === group.groupid)
-                    .map((member) => (
-                      <tr key={member._id}>
-                        <div style={{ padding: "8px" }}>{member.userId}</div>
-                      </tr>
-                    ))}
-                </td>
-                <td>
-                  {this.state.groupMembers
-                    .filter((m) => m.groupid === group.groupid)
-                    .map((member) => (
-                      <tr key={member._id}>
-                        <div style={{ padding: "8px" }}>{member.name}</div>
-                      </tr>
-                    ))}
-                </td>
-                <td>
-                  {this.state.groupMembers
-                    .filter((m) => m.groupid === group.groupid)
-                    .map((member) => (
-                      <tr key={member._id}>
-                        <div style={{ padding: "8px" }}>{member.email}</div>
-                      </tr>
-                    ))}
-                </td>
-                <td>
-                  {this.state.groupMembers
-                    .filter((m) => m.groupid === group.groupid)
-                    .map((member) => (
-                      <tr key={member._id}>
-                        <div style={{ padding: "5px" }}>
-                          <Button
-                            variant="contained"
-                            color="warning"
-                            size="small"
-                            data-bs-toggle="modal"
-                            data-bs-target="#static-backdrop"
-                            onClick={() => this.handleOnUpdate(member._id)}
-                          >
-                            Update
-                          </Button>
-                        </div>
-                      </tr>
-                    ))}
-                </td>
-                <td>
-                  {this.state.groupMembers
-                    .filter((m) => m.groupid === group.groupid)
-                    .map((member) => (
-                      <tr key={member._id}>
-                        <div style={{ padding: "5px" }}>
-                          <Button
-                            variant="contained"
-                            color="error"
-                            size="small"
-                            startIcon={<DeleteIcon />}
-                            style={{ marginLeft: "1rem" }}
-                            onClick={() => this.handleOnDelete(member._id)}
-                          >
-                            Delete
-                          </Button>
-                        </div>
-                      </tr>
-                    ))}
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          {(this.state.groupMembers.length !== 0 && (
+            <tbody>
+              {this.getPageData().map((group) => (
+                <tr key={group._id}>
+                  <th scope="row">{group.groupid}</th>
+                  <td>
+                    {this.state.groupMembers
+                      .filter((m) => m.groupid === group.groupid)
+                      .map((member) => (
+                        <tr key={member._id}>
+                          <div style={{ padding: "8px" }}>{member.userId}</div>
+                        </tr>
+                      ))}
+                  </td>
+                  <td>
+                    {this.state.groupMembers
+                      .filter((m) => m.groupid === group.groupid)
+                      .map((member) => (
+                        <tr key={member._id}>
+                          <div style={{ padding: "8px" }}>{member.name}</div>
+                        </tr>
+                      ))}
+                  </td>
+                  <td>
+                    {this.state.groupMembers
+                      .filter((m) => m.groupid === group.groupid)
+                      .map((member) => (
+                        <tr key={member._id}>
+                          <div style={{ padding: "8px" }}>{member.email}</div>
+                        </tr>
+                      ))}
+                  </td>
+                  <td>
+                    {this.state.groupMembers
+                      .filter((m) => m.groupid === group.groupid)
+                      .map((member) => (
+                        <tr key={member._id}>
+                          <div style={{ padding: "5px" }}>
+                            <Button
+                              variant="contained"
+                              color="warning"
+                              size="small"
+                              data-bs-toggle="modal"
+                              data-bs-target="#static-backdrop"
+                              onClick={() => this.handleOnUpdate(member._id)}
+                            >
+                              Update
+                            </Button>
+                          </div>
+                        </tr>
+                      ))}
+                  </td>
+                  <td>
+                    {this.state.groupMembers
+                      .filter((m) => m.groupid === group.groupid)
+                      .map((member) => (
+                        <tr key={member._id}>
+                          <div style={{ padding: "5px" }}>
+                            <Button
+                              variant="contained"
+                              color="error"
+                              size="small"
+                              startIcon={<DeleteIcon />}
+                              style={{ marginLeft: "1rem" }}
+                              onClick={() => this.handleOnDelete(member._id)}
+                            >
+                              Delete
+                            </Button>
+                          </div>
+                        </tr>
+                      ))}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          )) || <Loading />}
         </table>
         <div
           style={{

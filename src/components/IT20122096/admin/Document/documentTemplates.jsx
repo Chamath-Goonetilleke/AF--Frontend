@@ -4,6 +4,7 @@ import {
   getTemplates,
   uploadTemplate,
 } from "../../../../services/IT20122096/templateService";
+import { createSubmision, getSubmisions } from "../../../../services/IT20122096/submisionService";
 
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import DownloadIcon from "@mui/icons-material/Download";
@@ -12,6 +13,8 @@ import Input from "./../../common/input";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
+import Loading from "./../../common/loading";
+import DropDownList from "./../../common/dropDownList";
 
 class DocumentTemplate extends Component {
   state = {
@@ -23,18 +26,27 @@ class DocumentTemplate extends Component {
       "Final Thesis Template",
     ],
     templates: [],
+    submisions: [""],
     selectedFile: "",
     currentTemplate: "",
+    submisionName: "",
   };
 
   async componentDidMount() {
     const { data: templates } = await getTemplates();
-    this.setState({ templates });
+    const { data: submisions } = await getSubmisions();
+    const subArray = [...this.state.submisions];
+    submisions.map((sub) => subArray.push(sub.name));
+    this.setState({ templates, submisions: subArray });
   }
+
   handleInputChange = (e) => {
+    const { value: submisionName } = e.currentTarget;
+    this.setState({ submisionName });
+  };
+  handleDropChange = (e) => {
     const { value: currentTemplate } = e.currentTarget;
     this.setState({ currentTemplate });
-    console.log(currentTemplate);
   };
 
   handleChange = (e) => {
@@ -42,13 +54,24 @@ class DocumentTemplate extends Component {
     this.setState({ selectedFile: file });
   };
   handleDelete = async (id) => {
-    await delteTemplates(id).then(() => {
-      toast.success("Deleted Successfully",{autoClose:1000})
-      setTimeout(() => window.location = "/profile", 2000);
-    }).catch((error) => {
-       toast.error(error.response.data);
-    })
+    await delteTemplates(id)
+      .then(() => {
+        toast.success("Deleted Successfully", { autoClose: 1000 });
+        setTimeout(() => (window.location = "/profile"), 2000);
+      })
+      .catch((error) => {
+        toast.error(error.response.data);
+      });
   };
+  handleOnCreate = async () => {
+    const name = this.state.submisionName;
+    await createSubmision(name).then(() => {
+      toast.success("Submision type created Successfully", { autoClose: 1000 })
+      setTimeout(() => {
+        window.location="/profile"
+      }, 2000);
+    }).catch((error)=>toast.error(error.response.data))
+  }
   uploadImage = async () => {
     const formData = new FormData();
     formData.append("template", this.state.selectedFile);
@@ -57,59 +80,86 @@ class DocumentTemplate extends Component {
       success: "Uploaded Successfully",
       error: "Something Went Wrong",
     });
-    setTimeout(() => window.location = "/profile", 1000);
+    setTimeout(() => (window.location = "/profile"), 1000);
   };
 
-  handleSubmit = (e) => {
+  handleFileSubmit = (e) => {
     e.preventDefault();
     if (!this.state.selectedFile) return;
     console.log(this.state.selectedFile);
     this.uploadImage(this.state.selectedFile);
   };
   render() {
-    const { templates, selectedFile, currentTemplate } = this.state;
-    return (
+    const { templates, selectedFile, currentTemplate, submisions } = this.state;
+    return templates.length === 0 ? (
+      <Loading />
+    ) : (
       <div>
-        <div style={{ width: "40%", marginBottom: "2rem", marginLeft: "60%" }}>
-          <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-            <div>
-              <Input
-                label="Create new Template"
-                name="template"
-                type="text"
-                onChange={this.handleInputChange}
-              />
+        <div style={{ display: "flex", marginBottom: "2rem" }}>
+          <div style={{ width: "40%", marginLeft: "10%" }}>
+            <form>
               <div style={{ display: "flex" }}>
-                <input
-                  className="form-control"
-                  type="file"
-                  id="formFile"
+                <Input
+                  label="Create new Submision"
                   name="template"
-                  style={{
-                    marginTop: "1rem",
-                    marginBottom: "1rem",
-                    marginRight: "1rem",
-                  }}
-                  onChange={(e) => this.handleChange(e)}
-                  disabled={currentTemplate === ""}
+                  type="text"
+                  onChange={this.handleInputChange}
                 />
-
                 <Button
-                  type="submit"
+                  style={{ marginTop: "2rem", marginLeft: "1rem" }}
                   variant="contained"
-                  color="primary"
-                  endIcon={<FileUploadIcon />}
-                  style={{
-                    marginTop: "1rem",
-                    marginBottom: "1rem",
-                  }}
-                  disabled={selectedFile === ""}
+                  onClick={() => this.handleOnCreate()}
                 >
-                  Upload
+                  Create
                 </Button>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
+          <div style={{ marginLeft: "20%" }}>
+            <form
+              onSubmit={this.handleFileSubmit}
+              encType="multipart/form-data"
+            >
+              <div>
+                <DropDownList
+                  label="Seletec Template"
+                  name="temp"
+                  options={submisions}
+                  onChange={this.handleDropChange}
+                />
+
+                <div style={{ display: "flex" }}>
+                  <input
+                    className="form-control"
+                    type="file"
+                    id="formFile"
+                    name="template"
+                    style={{
+                      marginTop: "1rem",
+                      marginBottom: "1rem",
+                      marginRight: "1rem",
+                    }}
+                    onChange={(e) => this.handleChange(e)}
+                    disabled={currentTemplate === ""}
+                  />
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    endIcon={<FileUploadIcon />}
+                    style={{
+                      marginTop: "1rem",
+                      marginBottom: "1rem",
+                    }}
+                    disabled={selectedFile === ""}
+                  >
+                    Upload
+                  </Button>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {templates.map((template) => (

@@ -3,9 +3,11 @@ import NavbarInside from "../common/navbarInside";
 import SupervisorGroups from "./supervisorGroups";
 import { getUser } from "../../../services/IT20122096/userServices";
 import CommonDocuments from './../common/Documents/commonDocuments';
+import StaffResearchTopicRequests from "../../IT20216078/staff/StaffResearchTopicRequests";
+import AcceptedStaffResearchTopics from './../../IT20216078/staff/StaffResearchAcceptedTopics';
 class SupervisorProfile extends Component {
   state = {
-    items: ["Groups", "Request", "Documents", "Reports"],
+    items: ["Groups", "Request", "Documents"],
     currentItem: "Groups",
     pageSize: 3,
     currentPage: 1,
@@ -33,13 +35,11 @@ class SupervisorProfile extends Component {
             currentItem={currentItem}
           />
           {currentItem === "Groups" ? (
-            <SupervisorGroups />
+            <AcceptedStaffResearchTopics/>
           ) : currentItem === "Request" ? (
-            <div>req</div>
+            <StaffResearchTopicRequests/>
           ) : currentItem === "Documents" ? (
             <CommonDocuments/>
-          ) : currentItem === "Reports" ? (
-            <div>repo</div>
           ) : null}
         </div>
       </div>

@@ -7,6 +7,7 @@ import SideMenuList from "../../common/sideMenuList";
 import SearchBar from "../../common/searchBar";
 import _ from "lodash";
 import AdminGroupCard from "./adminGroupCard";
+import Loading from "../../common/loading";
 
 class AdminGroups extends Component {
   state = {
@@ -80,7 +81,8 @@ class AdminGroups extends Component {
 
   render() {
     return (
-      <div style={{ display: "flex" }}>
+      this.state.groups.length===0 ?<Loading/>:
+      <div style={{ display: "flex" }}> 
         <SideMenuList
           items={this.state.menu}
           currentItem={this.state.currentItem}
@@ -115,6 +117,7 @@ class AdminGroups extends Component {
         </div>
       </div>
     );
+    
   }
 }
 

@@ -4,6 +4,7 @@ import { paginate } from "../../../services/IT20122096/paginateService";
 import Group from "../common/group";
 import Page from "../common/pagination";
 import SideMenuList from "../common/sideMenuList";
+import Loading from './../common/loading';
 
 class Co_SupervisorGroups extends Component {
   state = {
@@ -66,7 +67,9 @@ class Co_SupervisorGroups extends Component {
   };
   render() {
     const { menu, currentItem, groups, pageSize, currentPage } = this.state;
-    return (
+    return groups.length === 0 ? (
+      <Loading />
+    ) : (
       <div>
         <div style={{ display: "flex", marginTop: "5rem" }}>
           <SideMenuList

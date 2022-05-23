@@ -5,6 +5,7 @@ import StaffUpdate from "./staffUpdateModal";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
+import Loading from "../../common/loading";
 
 class StaffTable extends Component {
   state = {
@@ -34,6 +35,7 @@ class StaffTable extends Component {
   render() {
     const { items } = this.props;
     return (
+      items.length===0?<Loading/>:
       <div>
         <div
           className="container"

@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { getUser } from "../../../services/IT20122096/userServices";
 import NavbarInside from "../common/navbarInside";
-import Co_SupervisorGroups from "./co-supervisorGroups";
 import CommonDocuments from './../common/Documents/commonDocuments';
+import AcceptedStaffResearchTopics from './../../IT20216078/staff/StaffResearchAcceptedTopics';
+import StaffResearchTopicRequests from './../../IT20216078/staff/StaffResearchTopicRequests';
 
 class CosupervisorProfile extends Component {
   state = {
-    items: ["Groups", "Request", "Documents", "Reports"],
+    items: ["Groups", "Request", "Documents"],
     currentItem: "Groups",
     pageSize: 3,
     currentPage: 1,
@@ -36,13 +37,11 @@ class CosupervisorProfile extends Component {
             currentItem={currentItem}
           />
           {currentItem === "Groups" ? (
-            <Co_SupervisorGroups />
+            <AcceptedStaffResearchTopics/>
           ) : currentItem === "Request" ? (
-            <div>req</div>
+            <StaffResearchTopicRequests/>
           ) : currentItem === "Documents" ? (
             <CommonDocuments/>
-          ) : currentItem === "Reports" ? (
-            <div>repo</div>
           ) : null}
         </div>
       </div>

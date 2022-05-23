@@ -7,7 +7,7 @@ import CommonDocuments from './../common/Documents/commonDocuments';
 
 class PannelMemberProfile extends Component {
   state = {
-    items: ["Groups", "Request", "Documents", "Reports"],
+    items: ["Groups", "Request", "Documents"],
     currentItem: "Groups",
     pageSize: 3,
     currentPage: 1,
@@ -42,8 +42,6 @@ class PannelMemberProfile extends Component {
             <TopicRequestList />
           ) : currentItem === "Documents" ? (
             <CommonDocuments/>
-          ) : currentItem === "Reports" ? (
-            <div>repo</div>
           ) : null}
         </div>
       </div>

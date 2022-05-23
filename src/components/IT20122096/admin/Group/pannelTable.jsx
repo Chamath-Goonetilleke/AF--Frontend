@@ -1,16 +1,16 @@
 import React from "react";
 import { addPannelMember } from "../../../../services/IT20122096/adminService";
 
-import { ToastContainer, toast } from "react-toastify";
+import {toast } from "react-toastify";
 
 const PannelTable = ({ pannelMembers, groupid }) => {
   console.log(pannelMembers);
   handleOnAdd = async (memberId) => {
     try {
       await addPannelMember(groupid, memberId).then(() =>
-        toast.success("Pannel Member Added")
+        toast.success("Pannel Member Added",{autoClose:1000})
       );
-      setTimeout(()=>{window.location = "/profile";},3000)
+      setTimeout(()=>{window.location = "/profile";},2000)
       
     } catch (error) {
       console.log(error);
@@ -18,18 +18,6 @@ const PannelTable = ({ pannelMembers, groupid }) => {
   };
   return (
     <React.Fragment>
-      <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-      />
       <table className="table">
         <thead>
           <tr>

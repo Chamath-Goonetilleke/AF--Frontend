@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getGroups } from "../../../services/IT20122096/adminService";
 import { paginate } from "../../../services/IT20122096/paginateService";
 import Group from "../common/group";
+import Loading from "../common/loading";
 import Page from "../common/pagination";
 import SideMenuList from "../common/sideMenuList";
 
@@ -67,6 +68,7 @@ class SupervisorGroups extends Component {
   render() {
     const { menu, currentItem, groups, pageSize, currentPage } = this.state;
     return (
+      groups.length===0?<Loading/>:
       <div>
         <div style={{ display: "flex", marginTop: "5rem" }}>
           <SideMenuList

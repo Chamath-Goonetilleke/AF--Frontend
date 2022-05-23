@@ -2,7 +2,7 @@ import Joi from "joi-browser";
 import React from "react";
 import { loginUser } from "../../services/IT20122096/authServices";
 import Form from "./common/form";
-import { ToastContainer, toast } from "react-toastify";
+import {toast } from "react-toastify";
 
 class LoginForm extends Form {
   state = {
@@ -37,18 +37,6 @@ class LoginForm extends Form {
     const { errors } = this.state;
     return (
       <React.Fragment>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
         <div
           style={{
             border:

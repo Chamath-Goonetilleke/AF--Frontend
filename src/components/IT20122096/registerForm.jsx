@@ -63,12 +63,13 @@ class RegisterForm extends Form {
       toast.error(error.cPassword, { theme: "dark" });
       return this.setState({ errors: error });
     }
-
-    const { data: jwt } = await addUser(data)
-      .then(() => {
+//TODO:check error
+      await addUser(data)
+      .then((res) => {
         toast.success("Registerd in Successfully", { autoClose: 1000 });
-        setTimeout(() => {
-          loginWithJwt(jwt);
+        loginWithJwt(res.data);
+        console.log(res,res.data)
+        setTimeout(() => {    
           window.location = "/profile";
         }, 2000);
       })
@@ -82,18 +83,6 @@ class RegisterForm extends Form {
     console.log(errors);
     return (
       <React.Fragment>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
         <div
           style={{
             border:

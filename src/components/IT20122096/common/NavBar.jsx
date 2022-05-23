@@ -22,7 +22,7 @@ const NavBar = ({user}) => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav" style={{marginLeft:"85%"}}>
             {!user && (
               <React.Fragment>
                 <li className="nav-item">

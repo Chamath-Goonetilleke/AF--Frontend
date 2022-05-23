@@ -13,6 +13,7 @@ import Markings from "./markingTable";
 import Button from "@mui/material/Button";
 import Joi from "joi-browser";
 import { toast } from "react-toastify";
+import Loading from './../../common/loading';
 
 class MarkingScheme extends Form {
   state = {
@@ -67,8 +68,9 @@ class MarkingScheme extends Form {
     this.setState({ marking: "" });
   };
   render() {
-    const { data, errors } = this.state;
+    const { data, errors,markings } = this.state;
     return (
+      markings.length===0?<Loading/>:
       <React.Fragment>   
         <div style={{ marginTop: "2rem", width: "20rem", marginLeft: "65%" }}>
           <form onSubmit={this.handleSubmit}>

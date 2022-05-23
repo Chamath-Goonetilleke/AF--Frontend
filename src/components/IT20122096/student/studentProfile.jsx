@@ -6,7 +6,7 @@ import CommonDocuments from './../common/Documents/commonDocuments';
 
 class SupervisorProfile extends Component {
   state = {
-    items: ["Group", "Documents", "Reports"],
+    items: ["Group", "Documents"],
     currentItem: "Group",
     pageSize: 3,
     currentPage: 1,
@@ -37,8 +37,6 @@ class SupervisorProfile extends Component {
            <StudentGroup/>
           ) : currentItem === "Documents" ? (
             <CommonDocuments/>
-          ) : currentItem === "Reports" ? (
-            <div>repo</div>
           ) : null}
         </div>
       </div>

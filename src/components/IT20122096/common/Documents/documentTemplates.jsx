@@ -3,6 +3,7 @@ import { getTemplates } from "../../../../services/IT20122096/templateService";
 
 import DownloadIcon from "@mui/icons-material/Download";
 import Button from "@mui/material/Button";
+import Loading from "../loading";
 
 class DocumentTemplate extends Component {
   state = {
@@ -19,6 +20,7 @@ class DocumentTemplate extends Component {
   render() {
     const { templates } = this.state;
     return (
+      templates.length===0?<Loading/>:
       <div>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {templates.map((template) => (

@@ -35,7 +35,8 @@ const Group = ({items}) => {
                   </p>
 
                   <Button
-                    variant="contained"                    
+                    href={`/researchgroup/${item._id}`}
+                    variant="contained"
                     style={{ width: "16rem", marginTop: "1rem" }}
                     className="btn btn-primary"
                   >

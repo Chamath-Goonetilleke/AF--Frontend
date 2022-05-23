@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getAllMarkings, getMarkingById } from "../../../../services/IT20122096/markingShemeServices";
+import Loading from "../loading";
 
 import MarkingGenerator from "./markingSchema";
 import Markings from "./markingTable";
@@ -33,6 +34,7 @@ class MarkingScheme extends Component {
   }
   render() {
     return (
+      this.state.markings.length===0 ? <Loading/>:
       <React.Fragment>
         <div>
           <Markings

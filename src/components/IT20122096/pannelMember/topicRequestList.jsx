@@ -1,5 +1,7 @@
+import { Button } from '@mui/material';
 import React, { Component } from 'react'
 import { getTopicRequests } from '../../../services/IT20122096/pannelMemReqs';
+import Loading from '../common/loading';
 
 class TopicRequestList extends Component {
   state = { requests:[] };
@@ -11,7 +13,9 @@ class TopicRequestList extends Component {
 
   render() {
     const { requests } = this.state;
-    return (
+    return requests.length === 0 ? (
+      <Loading />
+    ) : (
       <div>
         <div
           className="container"
@@ -64,7 +68,14 @@ class TopicRequestList extends Component {
                     <div className="col">{request.topic}</div>
                     <div className="col">{request.field}</div>
                     <div className="col" style={{ marginRight: "-10rem" }}>
-                      <button className="btn btn-danger"> View </button>
+                      <Button
+                        href={`/topic/${request._id}`}
+                        variant="contained"
+                        color="error"
+                      >
+                        {" "}
+                        View{" "}
+                      </Button>
                     </div>
                   </div>
                 </div>
