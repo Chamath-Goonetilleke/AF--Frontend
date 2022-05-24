@@ -10,9 +10,9 @@ import "jspdf-autotable";
     let postDate = date.getFullYear() + "-" + month + "-" + day;
     return postDate;
   }
-  export function generatePDF() {
+  export function generatePDF(name,colums) {
     let document = new jsPDF();
-    const Column = ["Criteria", "Marks"];
+    const Column = colums;
 
     console.log(name, date);
     let Rows = [];

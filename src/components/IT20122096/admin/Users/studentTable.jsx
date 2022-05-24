@@ -20,7 +20,7 @@ class StudentTable extends Component {
     groups: [],
     groupMembers: [],
     pagedGroups: [],
-    pageSize: 4,
+    pageSize: 2,
     searchResult: "",
     currentPage: 1,
     itemCount: 0,
@@ -84,10 +84,7 @@ class StudentTable extends Component {
   render() {
     return (
       <div>
-        <SearchBar
-          onChange={this.handleSearch}
-          placeholder="example@gmail.com"
-        />
+        <SearchBar onChange={this.handleSearch} placeholder="SE3030_GRP_XX" />
         <table className="table">
           <thead>
             <tr>

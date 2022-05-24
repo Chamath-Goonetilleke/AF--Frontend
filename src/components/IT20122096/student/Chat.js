@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React,{ useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Pusher from "pusher-js";
 import { getChats, sendMessage } from "../../../services/IT20216078/chatServices";
