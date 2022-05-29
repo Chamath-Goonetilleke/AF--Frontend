@@ -34,18 +34,6 @@ class Criteria extends Form {
   render() {
     return (
       <div>
-        <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
         <div
           className="modal fade"
           id="markingCriteria"

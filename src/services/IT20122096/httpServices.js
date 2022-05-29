@@ -1,18 +1,8 @@
 import axios from "axios";
 
+axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "token";
 axios.interceptors.response.use(null, (err) => {
-  const notFound = err.response && err.response.status === 404;
-  const expectedError =
-    err.response &&
-    notFound &&
-    err.response.status >= 400 &&
-    err.response.status < 500;
-  if (notFound) {
-    console.log("This post has already been deleted.");
-  }
-  if (!expectedError) {
-    console.log("An Unexpected error occured.");
-  }
+  console.log(err.response.data)
   return Promise.reject(err);
 });
 
