@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "parcel public/index.html"
+    "build": "parcel public/index.html",
+    "heroku-postbuild": "parcel public/index.html"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +24,7 @@
     "jspdf-autotable": "^3.5.23",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
+    "parcel-bundler": "^1.12.5",
     "pusher-js": "^7.1.0-beta",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
