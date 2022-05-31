@@ -5,7 +5,7 @@ import NavBar from "./components/IT20122096/common/NavBar";
 import LoginForm from "./components/IT20122096/loginForm";
 import Profile from "./components/IT20122096/profile";
 import RegisterForm from "./components/IT20122096/registerForm";
-import { ToastContainer, toast, Zoom } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import "./App.css";
 
@@ -25,10 +25,8 @@ import ProposalSubmit from "./components/IT20122614/ProposalSubmit";
 import FinalThesis from "./components/IT20122614/FinalThesis";
 import SubmitPresentation from "./components/IT20122614/SubmitPresentation";
 
-import TopicList from "./components/IT20192082/TopicList";
 import TopicDetails from "./components/IT20192082/TopicDetails";
 import TopicEdit from "./components/IT20192082/TopicEdit";
-import ResearchgroupsList from "./components/IT20192082/ResearchgroupsList";
 import PresentationList from "./components/IT20192082/PresentationList";
 import Marks from "./components/IT20192082/Marks";
 import SaveMarks from "./components/IT20192082/SaveMarks";

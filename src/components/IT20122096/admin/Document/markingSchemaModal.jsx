@@ -10,7 +10,7 @@ const MarkingSchemaModal = ({ name, date, criterias, getTotal, onClose }) => {
     let postDate = date.getFullYear() + "-" + month + "-" + day;
     return postDate;
   }
-  generatePDF = () => {
+  function generatePDF(){
     let document = new jsPDF();
     const Column = ["Criteria", "Marks"];
 

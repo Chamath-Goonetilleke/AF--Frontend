@@ -97,13 +97,13 @@ class StudentTable extends Component {
           {(this.state.groupMembers.length !== 0 && (
             <tbody>
               {this.getPageData().map((group) => (
-                <tr key={group._id}>
+                <tr key={group._id} >
                   <th scope="row">{group.groupid}</th>
                   <td>
                     {this.state.groupMembers
                       .filter((m) => m.groupid === group.groupid)
                       .map((member) => (
-                        <tr key={member._id}>
+                        <tr key={member._id} >
                           <div style={{ padding: "8px" }}>{member.userId}</div>
                         </tr>
                       ))}
@@ -130,7 +130,7 @@ class StudentTable extends Component {
                     {this.state.groupMembers
                       .filter((m) => m.groupid === group.groupid)
                       .map((member) => (
-                        <tr key={member._id}>
+                        <tr key={member._id} >
                           <div style={{ padding: "5px" }}>
                             <Button
                               variant="contained"

@@ -70,7 +70,7 @@ class MarkingScheme extends Form {
   render() {
     const { data, errors,markings } = this.state;
     return (
-      markings.length===0?<Loading/>:
+      
       <React.Fragment>   
         <div style={{ marginTop: "2rem", width: "20rem", marginLeft: "65%" }}>
           <form onSubmit={this.handleSubmit}>

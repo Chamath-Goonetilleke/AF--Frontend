@@ -8,6 +8,7 @@ class AdminDocuments extends Component {
     items: ["Marking Schemas", "Document Templates"],
     currentItem: "Marking Schemas",
   };
+  
   handleChange = (item) => {
     this.setState({ currentItem: item });
   };

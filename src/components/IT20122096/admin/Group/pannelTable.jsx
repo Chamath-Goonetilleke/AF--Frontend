@@ -5,7 +5,7 @@ import {toast } from "react-toastify";
 
 const PannelTable = ({ pannelMembers, groupid }) => {
   console.log(pannelMembers);
-  handleOnAdd = async (memberId) => {
+  async function handleOnAdd(memberId) {
     try {
       await addPannelMember(groupid, memberId).then(() =>
         toast.success("Pannel Member Added",{autoClose:1000})

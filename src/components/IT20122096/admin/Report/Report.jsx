@@ -60,6 +60,9 @@ class AdminReport extends Component {
       <Loading />
     ) : (
         <div>
+          <div style={{marginLeft:"35%"}}>
+            <h2>Group Summary Report</h2>
+          </div>
           <div style={{margin:"1rem",marginLeft:"77%"}}>
             <Button variant="contained" color="error" onClick={()=>this.generatePDF()}>Genrate Reoprt</Button>
           </div>
