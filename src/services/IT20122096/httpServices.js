@@ -1,8 +1,10 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 
 axios.defaults.headers.common["x-auth-token"] = localStorage.getItem("token") || "token";
 axios.interceptors.response.use(null, (err) => {
-  console.log(err.response.data)
+  toast.error(err.message);
+  console.log(err.message)
   return Promise.reject(err);
 });
 
