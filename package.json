@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel public/index.html",
-    "build": "parcel public/index.html",
-    "heroku-postbuild": "parcel public/index.html"
+    "build": "parcel build public/index.html",
   },
   "keywords": [],
   "author": "",
