@@ -32,11 +32,16 @@ export default class PresentationList extends Component {
     const id = this.props.match.params.id;
 
     return (
-        <div>
-        <ul class="list-group">
-        <li class="list-group-item active"><h2>{groupid}</h2></li>
-        <li class="list-group-item">Download Presentation : <a href={presentation}>
-        <button type="button" class="btn btn-warning"> Download</button>
+        <div className='container'>
+
+<br/>
+<br/>
+
+        
+        <ul className="list-group w-75">
+        <li className="list-group-item active"><h2>{groupid}</h2></li>
+        <li className="list-group-item">Download Presentation : <a href={presentation}>
+        <button type="button" className="btn btn-warning"> Download</button>
         </a></li>
         </ul>
         <br/>

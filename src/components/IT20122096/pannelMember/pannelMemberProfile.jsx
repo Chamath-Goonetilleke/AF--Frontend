@@ -3,11 +3,14 @@ import { getUser } from "../../../services/IT20122096/userServices";
 import NavbarInside from "../common/navbarInside";
 import PannelMemberGroups from "./pannelMemberGroups";
 import TopicRequestList from "./topicRequestList";
-import CommonDocuments from './../common/Documents/commonDocuments';
+import CommonDocuments from "./../common/Documents/commonDocuments";
+import Report from "./../../IT20192082/Report";
+import ResearchgroupsList from "./../../IT20192082/ResearchgroupsList";
+import TopicList from "./../../IT20192082/TopicList";
 
 class PannelMemberProfile extends Component {
   state = {
-    items: ["Groups", "Request", "Documents"],
+    items: ["Groups", "Request", "Documents", "Report"],
     currentItem: "Groups",
     pageSize: 3,
     currentPage: 1,
@@ -37,11 +40,13 @@ class PannelMemberProfile extends Component {
             currentItem={currentItem}
           />
           {currentItem === "Groups" ? (
-            <PannelMemberGroups />
+            <ResearchgroupsList />
           ) : currentItem === "Request" ? (
-            <TopicRequestList />
+            <TopicList />
           ) : currentItem === "Documents" ? (
-            <CommonDocuments/>
+            <CommonDocuments />
+          ) : currentItem === "Report" ? (
+            <Report />
           ) : null}
         </div>
       </div>

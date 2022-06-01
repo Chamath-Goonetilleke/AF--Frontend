@@ -33,9 +33,15 @@ export default class TopicDetails extends Component {
     const id = this.props.match.params.id;
 
     return (
-        <div>
+      
+        <div className='container'>
+
+<br/>
+<br/>
+
         <ul className="list-group" >
         <li className="list-group-item active"><h5>{topic}</h5></li>
+        <br/>
         <br/>
         <li className="list-group-item">Group ID : {groupid}</li>
         <li className="list-group-item">Field : {field}</li>
@@ -44,6 +50,7 @@ export default class TopicDetails extends Component {
         <button type="button" className="btn btn-danger">Download</button>
         </a></li>
         </ul>
+        <br/>
         <br/>
         <a href={`/edit/${id}`}>
         <button type="button" className="btn btn-success">Evaluate</button>

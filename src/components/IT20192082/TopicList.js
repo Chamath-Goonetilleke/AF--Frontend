@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { topics } from "../../services/IT20192082/panelService";
+
 
 export default class TopicList extends Component {
 constructor(props){
@@ -33,36 +33,72 @@ async retrieveTopics(){
 
   
 }
+
+async filterData(topics,searchKey){
+  const result = await topics.filter((topic) => 
+    topic.groupid.toLowerCase().includes(searchKey) ||topic.topic.toLowerCase().includes(searchKey)
+ )
+ this.setState({ topics: result })
+}
+
+handleSearchArea = async (e) => {
+ const searchKey = e.currentTarget.value;
+
+ await topics().then(res =>{
+
+   if(res.data.success){
+       this.filterData(res.data.existingTopics,searchKey)
+     
+   }
+ });
+}
+
   render() {
     return (
-    <div className='container'>
-    <p>All Topics</p>
-    <table className="table">
-      <thead>
-        <tr>
-          <th scope='col'>#</th>
-          <th scope='col'>Topic</th>
-          <th scope='col'>GroupID</th>
-          <th scope='col'>Field</th> 
-        </tr>
-      </thead>
-      <tbody>
-      {this.state.topics.map((topics,index) =>(
-        <tr key={index}>
-          <th scope='row'>{index+1}</th>
-          <td>
-          <a href={`/topic/${topics._id}`} style={{textDecoration:'none'}}>
-          {topics.topic}
-          </a>
-          </td>
-          <td>{topics.groupid}</td>
-          <td>{topics.field}</td>  
-        </tr>      
-      ))}
-      
-    </tbody>
-    </table>
-    </div>
-    )
+      <div className='container'>
+<br/>
+        
+      <div className='container'>
+      <br/>
+      <br/>
+
+      <div className='col-lg-3 mt-2 mb-2 ml-2'>
+        <input
+        className='form-control' 
+        type='search'
+        placeholder='Search'
+        name='searchQuery'
+        onChange={this.handleSearchArea}>
+        </input>
+      </div>
+      <br/>
+      <br/>
+
+      <table className="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Topic</th>
+      <th scope="col">GroupID</th>
+      <th scope="col">Field</th>
+    </tr>
+  </thead>
+  {this.state.topics.map((topics,index) =>(
+  <tbody>
+    <tr>
+      <th scope="row">{index+1}</th>
+      <td><a href={`/topic/${topics._id}`} style={{textDecoration:'none'}}>
+            {topics.topic}
+            </a>
+      </td>
+      <td>{topics.groupid}</td>
+      <td>{topics.field}</td>
+    </tr>
+  </tbody>
+  ))}
+</table>
+</div>
+</div>
+    );
  }
 }
