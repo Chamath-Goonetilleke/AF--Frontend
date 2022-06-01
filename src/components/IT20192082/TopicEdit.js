@@ -81,23 +81,26 @@ export default class TopicEdit extends Component {
     const {topic,groupid,field} = this.state.topic;
 
     return (
-      <div>
-      <br/>
+      <div className='container'>
+
+<br/>
+<br/>
+
       <form>
       <fieldset disabled>
-    <div class="form-group">
+    <div className="form-group">
       <label for="disabledTextInput">Topic</label>
-      <input type="text" id="disabledTextInput" class="form-control" placeholder={topic}></input>
+      <input type="text" id="disabledTextInput" className="form-control" placeholder={topic}></input>
     </div>
     <br/>
-    <div class="form-group">
+    <div className="form-group">
       <label for="disabledTextInput">GroupID</label>
-      <input type="text" id="disabledTextInput" class="form-control" placeholder={groupid}></input>
+      <input type="text" id="disabledTextInput" className="form-control" placeholder={groupid}></input>
     </div>
     <br/>
-    <div class="form-group">
+    <div className="form-group">
       <label for="disabledTextInput">Field</label>
-      <input type="text" id="disabledTextInput" class="form-control" placeholder={field}></input>
+      <input type="text" id="disabledTextInput" className="form-control" placeholder={field}></input>
     </div>
     <br/>
     </fieldset>
@@ -105,12 +108,11 @@ export default class TopicEdit extends Component {
 
     <div className='need-validation' noValidate>
       <label style={{marginBottom: '15px'}}>Status</label>
-      <input type='text'
-      className='form-control'
-      name='status'
-      placeholder='Enter status'
-      value={this.state.status}
-      onChange={this.handleInputChange}/>
+      <select className="form-select" aria-label="Default select example" name='status' onChange={this.handleInputChange}>
+        <option value={this.state.status} selected>Pending</option>
+        <option value="approved">Approve</option>
+        <option value="reject">Reject</option>
+      </select>
     </div>
       <br/>
     <div className='form-group' style={{marginBottom: '15px'}}>

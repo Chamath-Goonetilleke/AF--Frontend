@@ -81,8 +81,12 @@ export default class SaveMarks extends Component {
     const {groupid,panelmember} = this.state.researchgroup;
 
     return (
-      <div>
-        <br />
+      <div className='container'>
+
+<br/>
+<br/>
+
+
         <form>
           <fieldset disabled>
             <div className="form-group">
@@ -92,7 +96,7 @@ export default class SaveMarks extends Component {
               <input
                 type="text"
                 id="disabledTextInput"
-                class="form-control"
+                className="form-control"
                 placeholder={groupid}
                 value={this.state.groupid}
                 onChange={this.handleInputChange}
@@ -106,7 +110,7 @@ export default class SaveMarks extends Component {
               <input
                 type="text"
                 id="disabledTextInput"
-                class="form-control"
+                className="form-control"
                 placeholder={panelmember}
                 value={this.state.panelmember}
                 onChange={this.handleInputChange}
@@ -120,7 +124,7 @@ export default class SaveMarks extends Component {
               <input
                 type="text"
                 id="disabledTextInput"
-                class="form-control"
+                className="form-control"
                 placeholder="Presentation Marking Scheme"
                 value="Presentation Marking Scheme"
                 onChange={this.handleInputChange}
@@ -132,7 +136,7 @@ export default class SaveMarks extends Component {
           <div className="need-validation" noValidate>
             <label style={{ marginBottom: "15px" }}>Enter the Marks</label>
             <input
-              type="text"
+              type="number"
               className="form-control"
               name="totalmarks"
               placeholder="Enter Marks"
