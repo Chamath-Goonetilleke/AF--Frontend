@@ -1,7 +1,6 @@
 import http from "../IT20122096/httpServices";
-import config from "../../config.json";
 
-const endPoint = config.API + "/chat";
+const endPoint ="/chat";
 
 export async function getChats(id) {
   return http.get(endPoint + `/${id}`);

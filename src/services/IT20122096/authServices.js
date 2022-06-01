@@ -1,8 +1,7 @@
 import http from "./httpServices";
-import config from "../../config.json";
 import jwtDecode from "jwt-decode";
 
-const endPoint = config.API + "/login";
+const endPoint = "/login";
 
 export async function loginUser(data) {
   const user = { email: data.email, password: data.password };
@@ -21,7 +20,7 @@ export function getCurrentUser() {
   try {
     const token = localStorage.getItem("token");
     const user = jwtDecode(token);
-    localStorage.setItem("userId",user._id)
+    localStorage.setItem("userId", user._id);
     return user;
   } catch (error) {
     return null;
