@@ -1,7 +1,6 @@
-import config from "../../config.json";
 import service from "../IT20122096/httpServices";
 
-const url = config.API + "/topics";
+const url ="/topics";
 
 export async function topics() {
     return await service.get(url +"/topics");

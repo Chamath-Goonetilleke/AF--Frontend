@@ -1,7 +1,6 @@
 import http from "../IT20122096/httpServices";
-import config from "../../config.json";
 
-const endPoint = config.API + "/staff";
+const endPoint ="/staff";
 
 export async function topicRequests(staffId) {
   return await http.get(endPoint + `/requests/${staffId}`);
