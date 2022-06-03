@@ -2,6 +2,9 @@
   "name": "af-parcel-migration",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "16.14.0"
+  },
   "scripts": {
     "start": "parcel public/index.html",
     "build": "parcel build public/index.html"
