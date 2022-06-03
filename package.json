@@ -6,9 +6,6 @@
     "start": "parcel public/index.html",
     "build": "parcel build public/index.html"
   },
-  "engines": {
-    "node": "16.14.0"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
