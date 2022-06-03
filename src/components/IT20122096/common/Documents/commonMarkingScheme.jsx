@@ -9,11 +9,14 @@ class MarkingScheme extends Component {
   state = {
     markings: [],
     marking: "",
+    isLoad:false
   };
 
   async componentDidMount() {
     const { data: markings } = await getAllMarkings();
+    this.state.isLoad = true;
     this.setState({ markings });
+    
   }
   getDate = (postdate) => {
     let date = new Date(postdate);
@@ -29,12 +32,12 @@ class MarkingScheme extends Component {
   };
   onClose = () => {
     console.log("On close");
-    this.setState({ marking:"" });
-
-  }
+    this.setState({ marking: "" });
+  };
   render() {
-    return (
-      this.state.markings.length===0 ? <Loading/>:
+    return  this.state.isLoad === false ? (
+      <Loading /> 
+    ) : (
       <React.Fragment>
         <div>
           <Markings

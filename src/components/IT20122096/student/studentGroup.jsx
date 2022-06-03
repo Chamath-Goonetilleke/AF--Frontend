@@ -43,9 +43,7 @@ class StudentGroup extends Component {
 
   render() {
     const { group, isUser, members } = this.state;
-    return members.length === 0 ? (
-      <Loading />
-    ) : (
+    return (
       <div style={{ display: "flex" }}>
         <div className="card" style={{ width: "18rem", margin: "10rem" }}>
           {isUser === true ? (
@@ -115,6 +113,7 @@ class StudentGroup extends Component {
         {isUser === true && <Chat/>}
       </div>
     );
+    
   }
 }
 
