@@ -84,7 +84,7 @@ class AddPannel extends Component {
                     onChange={this.handleSearch}
                     placeholder="example@gmail.com"
                   />
-                  {this.state.searchQuary}
+
                   <PannelTable
                     pannelMembers={this.getPageData().data}
                     groupid={this.props.id}

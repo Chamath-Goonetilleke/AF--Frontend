@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams } from "react-router-dom";
 import { insertMarks } from "../../../services/IT20216078/staffServices";
 
 import "./Styles.css";
 
 export default function InsertMark() {
   const params = useParams();
-  const navigate = useNavigate();
+ 
 
   const [form, setForm] = useState({
     name: params.id0.toString(),
@@ -28,9 +28,10 @@ export default function InsertMark() {
 
     if (response.msg === false) {
       window.alert("Submitted marks cannot change again");
+    } else {
+      window.alert("Marks submitted");
     }
 
-    navigate(-1);
   }
 
   return (

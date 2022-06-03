@@ -15,7 +15,7 @@ export default function Submissions(props) {
   }, [props.id.toString()]);
 
   function displayProposal() {
-    if (submission !== null && submission.proposal !== undefined) {
+    if (submission.proposal !== "") {
       return (
         <tr>
           <td>Propsal Document</td>
@@ -41,7 +41,7 @@ export default function Submissions(props) {
   }
 
   function displayReport() {
-    if (submission !== null && submission.report !== undefined) {
+    if (submission.report !== "") {
       return (
         <tr>
           <td>Report</td>
@@ -67,7 +67,7 @@ export default function Submissions(props) {
   }
 
   function displayFinalThesis() {
-    if (submission !== null && submission.Finalthesis !== undefined) {
+    if (submission.Finalthesis !== "") {
       return (
         <tr>
           <td>Final Thesis</td>
